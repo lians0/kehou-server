@@ -49,8 +49,8 @@ public class TokenService {
              * iss (发行者)、exp (过期时间)、sub (主题)、aud (受众)
              */
             JWTClaimsSet claimsSet = new JWTClaimsSet.Builder()
-                    .subject("doi")
-                    .issuer("http://www.doiduoyi.com")
+//                    .subject("token")
+                    .issuer("lian")
                     .expirationTime(new Date(System.currentTimeMillis() + EXPIRE_TIME))
                     .claim("ACCOUNT", account)
                     .build();
@@ -75,7 +75,7 @@ public class TokenService {
     /**
      * 校验token
      *
-     * @param token
+     * @param token 待验证token
      * @return
      */
     public  String vaildToken(String token) {

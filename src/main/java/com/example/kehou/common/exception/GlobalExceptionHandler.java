@@ -19,27 +19,27 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-
-    /**
-     * 应用到所有@RequestMapping注解方法，在其执行之前初始化数据绑定器
-     *
-     * @param binder
-     */
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-//        log.info("binder.getFieldDefaultPrefix {}",binder.getFieldDefaultPrefix());
-//        log.info("binder.getFieldMarkerPrefix {}",binder.getFieldMarkerPrefix());
-    }
+//
+//    /**
+//     * 应用到所有@RequestMapping注解方法，在其执行之前初始化数据绑定器
+//     *
+//     * @param binder
+//     */
+//    @InitBinder
+//    public void initBinder(WebDataBinder binder) {
+////        log.info("binder.getFieldDefaultPrefix {}",binder.getFieldDefaultPrefix());
+////        log.info("binder.getFieldMarkerPrefix {}",binder.getFieldMarkerPrefix());
+//    }
     /**
      * 全局数据绑定
      * 把值绑定到Model中，使全局@RequestMapping可以获取到该值
      * @param model
      */
-    @ModelAttribute
-    public void addAttributes(Model model) {
-//        model.addAttribute("author", "harry");
-    }
-
+//    @ModelAttribute
+//    public void addAttributes(Model model) {
+////        model.addAttribute("author", "harry");
+//    }
+//
 //    /**
 //     * token错误
 //     */
@@ -50,16 +50,16 @@ public class GlobalExceptionHandler {
 //        return Result.error(HttpStatus.ERROR,e.getMessage());
 //
 //    }
-//    /**
-//     * 业务异常
-//     */
-//    @ExceptionHandler(ServiceException.class)
-//    public Result handleServiceException(TokenException e, HttpServletRequest request){
+    /**
+     * 业务异常
+     */
+    @ExceptionHandler(ServiceException.class)
+    public Result handleServiceException(ServiceException e, HttpServletRequest request){
 //        System.out.println("捕获异常");
-//        String requestURI = request.getRequestURI();
-//        log.error("请求地址{}，{}",requestURI,e.getMessage());
-//        return Result.error(HttpStatus.ERROR,e.getMessage());
-//    }
+        String requestURI = request.getRequestURI();
+        log.error("请求地址{}，{}",requestURI,e.getMessage());
+        return Result.error(HttpStatus.ERROR,e.getMessage());
+    }
 
 //    /**
 //     * 请求方式不支持
@@ -80,7 +80,8 @@ public class GlobalExceptionHandler {
     public Result handleException(Exception e, HttpServletRequest request)
     {
         String requestURI = request.getRequestURI();
-        log.error("请求地址'{}',发生系统异常.", requestURI, e);
+        log.error("请求地址'{}',发生系统异常{}", requestURI, e);
+
         return Result.error(e.getMessage());
     }
 

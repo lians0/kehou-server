@@ -2,10 +2,12 @@ package com.example.kehou;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.ApplicationContext;
 
 
 @SpringBootApplication
+//@ServletComponentScan(basePackages = "com.example.kehou.config.filter")
 public class KehouApplication {
 
     public static void main(String[] args) {

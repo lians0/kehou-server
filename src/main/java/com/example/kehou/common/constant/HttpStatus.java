@@ -5,7 +5,7 @@ package com.example.kehou.common.constant;
  * 
  * @author shuangLian
  */
-public class HttpStatus
+public  class HttpStatus
 {
     /**
      * 操作成功

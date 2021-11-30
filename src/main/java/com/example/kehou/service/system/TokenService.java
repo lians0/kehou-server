@@ -38,7 +38,7 @@ public class TokenService {
      * @param account 用户账号
      * @return 具体token
      */
-    public  String createToken(String account) {
+    public String createToken(String account) {
         try {
             /**
              * 1.创建一个32-byte的密匙
@@ -76,9 +76,8 @@ public class TokenService {
      * 校验token
      *
      * @param token 待验证token
-     * @return
      */
-    public  String vaildToken(String token) {
+    public void validToken(String token) {
         try {
             SignedJWT jwt = SignedJWT.parse(token);
             JWSVerifier verifier = new MACVerifier(SECRET);
@@ -99,11 +98,10 @@ public class TokenService {
             if (Objects.isNull(account)) {
                 throw new TokenException("账号为空");
             }
-            return account.toString();
+            account.toString();
         } catch (ParseException | JOSEException e) {
             e.printStackTrace();
         }
-        return null;
     }
 
 }

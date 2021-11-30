@@ -20,18 +20,27 @@
                update_time
         from favorites
     </sql>
-    <select id="getFavoritesByUsername" resultType="com.example.kehou.domain.entity.Favorites">
+    <select id="getFavoritesByUsername" resultMap="favoritesVOMap">
         <!--#         <include refid="Base_Select"/>-->
-        select favorites_id,
-        subject_id,
-        belong_id,
-        create_time,
-        update_time
-        from favorites
-        where belong_id =
-        (select user_id
-        from user
-        where
-        user_name=#{username})
+        SELECT
+        c.subject_id,
+        c.subject_name,
+        c.icon
+        FROM
+        `favorites` a,
+        `user` b,
+        `subject` c
+        WHERE
+        a.belong_id = b.user_id
+        AND a.subject_id = c.subject_id
+        AND b.user_name = #{username}
+        ORDER BY
+        c.create_time
     </select>
+
+    <resultMap id="favoritesVOMap" type="com.example.kehou.domain.vo.FavoritesVO">
+        <id column="subject_id" property="subjectId"/>
+        <result column="subject_name" property="subjectName"/>
+        <result column="icon" property="iconUrl"/>
+    </resultMap>
 </mapper>

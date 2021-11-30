@@ -2,7 +2,10 @@ package com.example.kehou.mapper;
 
 import com.example.kehou.domain.entity.Favorites;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.kehou.domain.vo.FavoritesVO;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * @Entity generator.domain.Favorites
@@ -10,7 +13,7 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface FavoritesMapper extends BaseMapper<Favorites> {
 
-    Favorites getFavoritesByUsername(String username);
+    List<FavoritesVO> getFavoritesByUsername(String username);
 }
 
 

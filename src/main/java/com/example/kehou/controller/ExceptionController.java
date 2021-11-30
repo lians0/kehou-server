@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author ShuangLian
  * @date 2021/11/30 15:49
- *
  */
 
 @RestController
@@ -21,7 +20,7 @@ public class ExceptionController {
     private HttpServletRequest request;
 
     @RequestMapping("/err")
-    public void rethrow() throws Exception {
+    public void rethrow() {
         throw (RuntimeException) request.getAttribute("exception");
     }
 }

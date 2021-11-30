@@ -1,5 +1,6 @@
 package com.example.kehou.config.filter;
 
+import com.example.kehou.common.exception.job.TokenException;
 import com.example.kehou.service.system.TokenService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -45,8 +46,13 @@ public class TokenFilter implements Filter {
         }
         if(!flag){
             String token = httpRequest.getHeader("Auth");
+            if(StringUtils.isEmpty(token)){
+                throw new TokenException("你未登录,请登录");
+            }
             log.info(token);
-            tokenService.validToken(token);
+            String account = tokenService.validToken(token);
+            log.info("{}登录===>",account);
+            httpRequest.setAttribute("username",account);
         }
         chain.doFilter(request, response);
     }

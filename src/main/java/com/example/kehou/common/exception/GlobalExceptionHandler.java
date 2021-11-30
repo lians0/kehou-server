@@ -80,7 +80,7 @@ public class GlobalExceptionHandler {
     public Result handleException(Exception e, HttpServletRequest request)
     {
         String requestURI = request.getRequestURI();
-        log.error("请求地址'{}',发生系统异常{}", requestURI, e);
+        log.error("请求地址'{}',发生系统异常", requestURI, e);
 
         return Result.error(e.getMessage());
     }

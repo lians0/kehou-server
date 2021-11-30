@@ -77,7 +77,7 @@ public class TokenService {
      *
      * @param token 待验证token
      */
-    public void validToken(String token) {
+    public String validToken(String token) {
         try {
             SignedJWT jwt = SignedJWT.parse(token);
             JWSVerifier verifier = new MACVerifier(SECRET);
@@ -87,10 +87,10 @@ public class TokenService {
             }
 
             //校验超时
-            Date expirationTime = jwt.getJWTClaimsSet().getExpirationTime();
-            if (new Date().after(expirationTime)) {
-                throw new TokenException("Token 已过期");
-            }
+//            Date expirationTime = jwt.getJWTClaimsSet().getExpirationTime();
+//            if (new Date().after(expirationTime)) {
+//                throw new TokenException("Token 已过期");
+//            }
 
             //获取载体中的数据
             Object account = jwt.getJWTClaimsSet().getClaim("ACCOUNT");
@@ -98,10 +98,12 @@ public class TokenService {
             if (Objects.isNull(account)) {
                 throw new TokenException("账号为空");
             }
-            account.toString();
+            return account.toString();
+
         } catch (ParseException | JOSEException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
 }

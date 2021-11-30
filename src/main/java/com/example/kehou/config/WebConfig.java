@@ -31,7 +31,7 @@ public class WebConfig {
         FilterRegistrationBean<TokenFilter> registration =
                 new FilterRegistrationBean<>(new TokenFilter());
         registration.addUrlPatterns("/*");
-        registration.addInitParameter("excludedUris","");
+        registration.addInitParameter("excludedUris","/login,/register");
 
         registration.setOrder(1);
         registration.setName("TokenFilter");

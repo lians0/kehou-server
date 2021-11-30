@@ -24,6 +24,9 @@
         salt,user_type,status,
         create_time,update_time from user
     </sql>
+    <insert id="insertUser" parameterType="User">
+        insert into user (user_name,password,create_time) values (#{userName},#{password},#{createTime})
+    </insert>
     <select id="getUserByUsername" parameterType="String" resultType="com.example.kehou.domain.entity.User">
         <include refid="Base_Select"/>
         where user_name=#{username}

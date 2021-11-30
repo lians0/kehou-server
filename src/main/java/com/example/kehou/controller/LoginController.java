@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 /**
  * @author ShuangLian
@@ -23,15 +24,13 @@ public class LoginController {
     private LoginService loginService;
 
     @PostMapping("/login")
-    public Result login(@RequestBody LoginBody loginBody) {
+    public Result login(@RequestBody @Valid LoginBody loginBody) {
 
         System.out.println(loginBody);
 
         String login = loginService.login(loginBody);
-        if(StringUtils.isEmpty(login)){
-            throw new ServiceException("用户不存在");
-        }
-
-        return Result.success(login);
+        return Result.success("登录成功",login);
     }
+
+
 }

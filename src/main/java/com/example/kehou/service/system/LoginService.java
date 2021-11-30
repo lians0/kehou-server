@@ -27,7 +27,7 @@ public class LoginService {
         User user = userService.getUserByUsername(loginBody.getUsername());
         if (BeanUtils.isNull(user)) {
             log.info("用户不存在");
-            return null;
+            throw new ServiceException("用户不存在");
         }
 
         return tokenService.createToken(loginBody.getUsername());

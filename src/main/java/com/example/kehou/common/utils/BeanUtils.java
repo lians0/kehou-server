@@ -11,4 +11,5 @@ public class BeanUtils {
      public static boolean isNotNull(Object o){
         return !(o == null);
     }
+
 }

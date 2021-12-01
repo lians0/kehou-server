@@ -1,6 +1,7 @@
 package com.example.kehou.config;
 
 import com.example.kehou.config.filter.ExceptionFilter;
+import com.example.kehou.config.filter.PrintFilter;
 import com.example.kehou.config.filter.TokenFilter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -15,6 +16,16 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @Configuration
 public class WebConfig {
+
+    @Bean
+    public FilterRegistrationBean<PrintFilter> PrintFilterRegistration() {
+        FilterRegistrationBean<PrintFilter> registration =
+                new FilterRegistrationBean<>(new PrintFilter());
+        registration.addUrlPatterns("/*");
+        registration.setOrder(-1);
+        registration.setName("PrintFilter");
+        return registration;
+    }
 
     @Bean
     public FilterRegistrationBean<ExceptionFilter> ExceptionFilterRegistration() {

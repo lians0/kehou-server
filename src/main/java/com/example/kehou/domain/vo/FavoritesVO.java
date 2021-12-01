@@ -1,9 +1,6 @@
 package com.example.kehou.domain.vo;
 
-import com.example.kehou.domain.entity.Favorites;
 import lombok.Data;
-
-import java.util.List;
 
 /**
  * @author ShuangLian
@@ -11,9 +8,7 @@ import java.util.List;
  */
 @Data
 public class FavoritesVO {
-
     private String subjectId;
-
     private String subjectName;
     private String iconUrl;
 }

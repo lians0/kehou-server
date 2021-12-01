@@ -4,6 +4,7 @@ import com.example.kehou.domain.Result;
 import com.example.kehou.domain.entity.Favorites;
 import com.example.kehou.domain.vo.FavoritesVO;
 import com.example.kehou.service.FavoritesService;
+import net.minidev.json.JSONArray;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -32,7 +33,7 @@ public class FavoritesController {
     public Result getFavoritesByUsername(HttpServletRequest request){
         String username = (String) request.getAttribute("username");
         List<FavoritesVO> favorites = favoritesService.getFavoritesByUsername(username);
-        return Result.success("获取所有收藏学科",favorites);
+        return Result.success("获取所有收藏学科", JSONArray.toJSONString(favorites));
     }
 
 }

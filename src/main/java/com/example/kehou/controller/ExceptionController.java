@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
  * @author ShuangLian
  * @date 2021/11/30 15:49
  */
-
 @RestController
 public class ExceptionController {
 

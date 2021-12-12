@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * 过滤器配置
+ *
  * @author ShuangLian
  * @date 2021/11/30 15:34
  */
@@ -42,8 +43,7 @@ public class WebConfig {
         FilterRegistrationBean<TokenFilter> registration =
                 new FilterRegistrationBean<>(new TokenFilter());
         registration.addUrlPatterns("/*");
-        registration.addInitParameter("excludedUris","/login,/register");
-
+        registration.addInitParameter("excludedUris", "/login,/register");
         registration.setOrder(1);
         registration.setName("TokenFilter");
         return registration;

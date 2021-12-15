@@ -18,7 +18,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class WebConfig {
 
-    @Bean
+    /**
+     * 请求头打印
+     */
+//    @Bean
     public FilterRegistrationBean<PrintFilter> PrintFilterRegistration() {
         FilterRegistrationBean<PrintFilter> registration =
                 new FilterRegistrationBean<>(new PrintFilter());
@@ -28,6 +31,9 @@ public class WebConfig {
         return registration;
     }
 
+    /**
+     * 异常捕获过滤器
+     */
     @Bean
     public FilterRegistrationBean<ExceptionFilter> ExceptionFilterRegistration() {
         FilterRegistrationBean<ExceptionFilter> registration =
@@ -38,12 +44,16 @@ public class WebConfig {
         return registration;
     }
 
+    /**
+     * token 检验过滤器
+     */
     @Bean
     public FilterRegistrationBean<TokenFilter> TokenFilterRegistration() {
         FilterRegistrationBean<TokenFilter> registration =
                 new FilterRegistrationBean<>(new TokenFilter());
         registration.addUrlPatterns("/*");
-        registration.addInitParameter("excludedUris", "/login,/register");
+        registration.addInitParameter("excludedUris",
+                "/login,/register,/swagger-resources.*,/doc.html,/v2.*,/webjars.*");
         registration.setOrder(1);
         registration.setName("TokenFilter");
         return registration;

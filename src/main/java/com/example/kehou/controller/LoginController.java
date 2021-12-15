@@ -3,6 +3,7 @@ package com.example.kehou.controller;
 import com.example.kehou.domain.Result;
 import com.example.kehou.domain.model.LoginBody;
 import com.example.kehou.service.system.LoginService;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping
+@Api(tags = "用户登录相关接口")
 public class LoginController {
 
     @Resource

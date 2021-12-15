@@ -11,13 +11,14 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.regex.Pattern;
 
 /**
+ * Token 校验以及将当前用户信息放入request
  * @author ShuangLian
  * @date 2021/11/30 14:38
  */
 @Slf4j
-//@Component
 public class TokenFilter implements Filter {
 
     private String[] excludedUris ={};
@@ -37,17 +38,18 @@ public class TokenFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
-        boolean flag = false;
-        for (String uri:excludedUris) {
-            if (httpRequest.getRequestURI().equals(uri)){
-                flag = true;
+        boolean isExcluded = false;
+        for (String url:excludedUris) {
+            if (Pattern.matches(url,httpRequest.getRequestURI())) {
+//                log.info("忽略"+url);
+                isExcluded = true;
                 break;
             }
         }
-        if(!flag){
+        if(!isExcluded){
             String token = httpRequest.getHeader("Auth");
             if(StringUtils.isEmpty(token)){
-                throw new TokenException(httpRequest.getRequestURI()+"你未登录,请登录");
+                throw new TokenException(httpRequest.getRequestURI()+" 你未登录,请登录");
             }
             log.info(token);
             String account = tokenService.validToken(token);

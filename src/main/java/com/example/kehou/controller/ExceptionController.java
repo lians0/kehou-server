@@ -1,5 +1,6 @@
 package com.example.kehou.controller;
 
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
  * @date 2021/11/30 15:49
  */
 @RestController
+@Api(tags = "异常处理")
 public class ExceptionController {
 
     @Resource

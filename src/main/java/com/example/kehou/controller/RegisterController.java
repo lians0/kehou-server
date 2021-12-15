@@ -4,6 +4,7 @@ import com.example.kehou.domain.Result;
 import com.example.kehou.domain.model.LoginBody;
 import com.example.kehou.service.UserService;
 import com.example.kehou.service.system.LoginService;
+import io.swagger.annotations.Api;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,7 @@ import javax.annotation.Resource;
  * @author ShuangLian
  * @date 2021/11/24 16:27
  */
+@Api(tags="注册")
 @RestController
 public class RegisterController {
 
@@ -23,6 +25,7 @@ public class RegisterController {
 
     @Resource
     private LoginService loginService;
+
 
     @PostMapping("/register")
     public Result register(@RequestBody LoginBody loginBody){

@@ -4,6 +4,8 @@ import com.example.kehou.domain.Result;
 import com.example.kehou.domain.entity.Favorites;
 import com.example.kehou.domain.vo.FavoritesVO;
 import com.example.kehou.service.FavoritesService;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiOperation;
 import net.minidev.json.JSONArray;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +30,10 @@ public class FavoritesController {
 
     /**
      * 查询该用户所有收藏的科目
+     * @author shuanglian
+     * @date 2021/12/15
      */
+    @ApiOperation("查询该用户所有收藏的科目")
     @GetMapping("/getFavoritesByUsername")
     public Result getFavoritesByUsername(HttpServletRequest request){
         String username = (String) request.getAttribute("username");

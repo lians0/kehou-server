@@ -5,15 +5,28 @@
 <mapper namespace="com.example.kehou.mapper.CourseMapper">
 
     <resultMap id="BaseResultMap" type="com.example.kehou.domain.entity.Course">
-            <id property="courseId" column="course_id" jdbcType="INTEGER"/>
-            <result property="courseName" column="course_name" jdbcType="VARCHAR"/>
-            <result property="subjectId" column="subject_id" jdbcType="INTEGER"/>
-            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <id property="courseId" column="course_id" jdbcType="INTEGER"/>
+        <result property="courseName" column="course_name" jdbcType="VARCHAR"/>
+        <result property="subjectId" column="subject_id" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Select">
-        select course_id,course_name,subject_id,
-        create_time,update_time from course
+        select course_id,
+               course_name,
+               subject_id,
+               create_time,
+               update_time
+        from course
     </sql>
+    <select id="getCourseByCourseId" resultType="com.example.kehou.domain.entity.Course">
+        <include refid="Base_Select"/>
+        where course_id = #{courseId}
+        limit 1
+    </select>
+    <select id="getCourseListByCourseId" resultType="com.example.kehou.domain.entity.Course">
+        <include refid="Base_Select"/>
+        where subject_id = #{subjectId}
+    </select>
 </mapper>

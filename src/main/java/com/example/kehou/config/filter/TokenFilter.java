@@ -53,7 +53,7 @@ public class TokenFilter implements Filter {
             }
             log.info(token);
             String account = tokenService.validToken(token);
-            log.info("{}登录===>",account);
+            log.info("用户=>>{}",account);
             httpRequest.setAttribute("username",account);
         }
         chain.doFilter(request, response);

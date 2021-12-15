@@ -1,12 +1,18 @@
 package com.example.kehou.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.example.kehou.common.utils.BeanUtils;
 import com.example.kehou.domain.Result;
 import com.example.kehou.domain.entity.Course;
 import com.example.kehou.service.CourseService;
+import com.mysql.cj.xdevapi.JsonArray;
+import io.swagger.annotations.ApiOperation;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * (Course)表控制层
@@ -30,6 +36,29 @@ public class CourseController {
         return null;
     }
 
+    @ApiOperation("根据课程id查课程")
+    @GetMapping("/getCourse/{courseId}")
+    public Result getCourseByCourseId(@PathVariable String courseId){
+
+        Course course = courseService.getCourseByCourseId(courseId);
+        if(BeanUtils.isNotNull(course)) {
+            return Result.success(JSON.toJSONString(course));
+        }else{
+            return Result.success("{e}");
+        }
+    }
+
+    @ApiOperation("根据学科id查课程列表")
+    @GetMapping("/getCourseList/{subjectId}")
+    public Result getCourseListByCourseId(@PathVariable String subjectId){
+
+        List<Course> courseList = courseService.getCourseListByCourseId(subjectId);
+        if(BeanUtils.isNotNull(courseList)) {
+            return Result.success(JSON.toJSONString(courseList));
+        }else{
+            return Result.success("[]");
+        }
+    }
 
 
 }

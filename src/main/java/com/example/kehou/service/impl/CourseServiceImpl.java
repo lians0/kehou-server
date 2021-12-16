@@ -15,11 +15,17 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
     @Resource
     private CourseMapper courseMapper;
 
+    /**
+     * 根据课程id查课程
+     */
     @Override
     public Course getCourseByCourseId(String courseId) {
         return courseMapper.getCourseByCourseId(courseId);
     }
 
+    /**
+     * 根据学科id查课程列表
+     */
     @Override
     public List<Course> getCourseListByCourseId(String subjectId) {
         return courseMapper.getCourseListByCourseId(subjectId);

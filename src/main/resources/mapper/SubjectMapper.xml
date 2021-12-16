@@ -26,5 +26,16 @@
                update_time
         from subject
     </sql>
+    <select id="getSubjectDetailBySubjectId" resultType="com.example.kehou.domain.vo.SubjectDetailVO">
+        Select b.login_name   as teacher,
+               a.subject_name as subjectName,
+               a.subject_desc as subjectDesc,
+               count(*)       as joinTotal
+        from subject a,
+             user b
+        where a.creator_id = b.user_id
+          and a.subject_id = #{subjectId}
+        group by b.login_name
+    </select>
 
 </mapper>

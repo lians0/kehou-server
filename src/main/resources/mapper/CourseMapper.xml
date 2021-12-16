@@ -29,4 +29,9 @@
         <include refid="Base_Select"/>
         where subject_id = #{subjectId}
     </select>
+    <select id="countBySubjectId" resultType="java.lang.Integer">
+        select count(*)
+        from course
+        where subject_id = #{subjectId}
+    </select>
 </mapper>

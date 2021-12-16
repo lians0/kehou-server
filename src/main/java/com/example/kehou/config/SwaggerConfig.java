@@ -36,9 +36,9 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("KeHou")
-                .description("swagger-bootstrap-ui")
+                .description("Kehou 接口")
                 .termsOfServiceUrl("http://localhost:5050/")
-                .contact("developer@mail.com")
+                .contact("913240512@qq.com")
                 .version("1.0")
                 .build();
     }

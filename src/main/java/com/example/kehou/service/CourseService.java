@@ -8,7 +8,13 @@ import java.util.List;
 
 public interface CourseService extends IService<Course> {
 
+    /**
+     * 根据课程id查课程
+     */
     Course getCourseByCourseId(String courseId);
 
+    /**
+     * 根据学科id查课程列表
+     */
     List<Course> getCourseListByCourseId(String subjectId);
 }

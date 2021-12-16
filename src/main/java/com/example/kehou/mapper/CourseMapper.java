@@ -12,7 +12,19 @@ import java.util.List;
 @Mapper
 public interface CourseMapper extends BaseMapper<Course> {
 
+    /**
+     * 根据课程id查课程
+     */
     Course getCourseByCourseId(String courseId);
+
+    /**
+     * 根据学科id查课程列表
+     */
     List<Course> getCourseListByCourseId(String subjectId);
+
+    /**
+     * 查寻学科下的课程数
+     */
+    int countBySubjectId(String subjectId);
 
 }

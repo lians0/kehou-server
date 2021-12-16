@@ -4,6 +4,7 @@ import com.example.kehou.domain.Result;
 import com.example.kehou.domain.entity.Favorites;
 import com.example.kehou.domain.vo.FavoritesVO;
 import com.example.kehou.service.FavoritesService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import net.minidev.json.JSONArray;
@@ -21,6 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/favorites")
+@Api(tags = "收藏夹（参与）课程相关接口")
 public class FavoritesController {
     /**
      * 服务对象

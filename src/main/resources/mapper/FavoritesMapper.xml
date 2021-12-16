@@ -37,6 +37,11 @@
         ORDER BY
         c.create_time
     </select>
+    <select id="countBySubjectId" resultType="java.lang.Integer">
+        select count(*)
+        from favorites
+        where subject_id = #{subjectId}
+    </select>
 
     <resultMap id="favoritesVOMap" type="com.example.kehou.domain.vo.FavoritesVO">
         <id column="subject_id" property="subjectId"/>

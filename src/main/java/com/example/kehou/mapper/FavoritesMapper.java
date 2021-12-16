@@ -14,6 +14,8 @@ import java.util.List;
 public interface FavoritesMapper extends BaseMapper<Favorites> {
 
     List<FavoritesVO> getFavoritesByUsername(String username);
+
+    int countBySubjectId(String subjectId);
 }
 
 

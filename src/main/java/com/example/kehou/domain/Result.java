@@ -1,6 +1,7 @@
 package com.example.kehou.domain;
 
 
+import com.alibaba.fastjson.JSON;
 import com.example.kehou.common.constant.HttpStatus;
 
 import java.util.HashMap;
@@ -81,7 +82,7 @@ public class Result extends HashMap<String, Object> {
      * @return 成功消息
      */
     public static Result success(Object data) {
-        return Result.success("操作成功", data);
+        return Result.success("操作成功", JSON.toJSONString(data));
     }
 
 

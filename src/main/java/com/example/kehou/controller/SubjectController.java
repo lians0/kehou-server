@@ -31,7 +31,6 @@ public class SubjectController {
 
     @GetMapping("/")
     public Result getSubjectByUsername(HttpServletRequest request){
-
         return null;
     }
 
@@ -43,7 +42,7 @@ public class SubjectController {
     public Result getSubjectDetailBySubjectId(@PathVariable String subjectId){
         SubjectDetailVO subject = subjectService.getSubjectDetailBySubjectId(subjectId);
         if (BeanUtils.isNotNull(subject)) {
-            return Result.success(JSON.toJSONString(subject));
+            return Result.success(subject);
         }
         return Result.success("{}");
     }

@@ -14,6 +14,8 @@ public class SubjectDetailVO {
     private String teacher;
     private String subjectName;
     private String subjectDesc;
+    private String subjectIcon;
+
 
     /**
      * 参与人总数

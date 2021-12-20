@@ -4,7 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.example.kehou.common.utils.BeanUtils;
 import com.example.kehou.domain.Result;
 import com.example.kehou.domain.entity.Course;
+import com.example.kehou.domain.vo.SubjectDetailVO;
 import com.example.kehou.service.CourseService;
+import com.example.kehou.service.SubjectService;
 import com.mysql.cj.xdevapi.JsonArray;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
@@ -28,6 +30,8 @@ public class CourseController {
      */
     @Resource
     private CourseService courseService;
+    @Resource
+    private SubjectService subjectService;
 
     @GetMapping("/")
     public Result getCourseByUsername(HttpServletRequest request){
@@ -44,14 +48,14 @@ public class CourseController {
         if(BeanUtils.isNotNull(course)) {
             return Result.success(JSON.toJSONString(course));
         }else{
-            return Result.success("{e}");
+            return Result.success("{}");
         }
     }
 
+    // todo: 分页查询
     @ApiOperation("根据学科id查课程列表")
     @GetMapping("/getCourseList/{subjectId}")
     public Result getCourseListByCourseId(@PathVariable String subjectId){
-
         List<Course> courseList = courseService.getCourseListByCourseId(subjectId);
         if(BeanUtils.isNotNull(courseList)) {
             return Result.success(JSON.toJSONString(courseList));
@@ -59,6 +63,19 @@ public class CourseController {
             return Result.success("[]");
         }
     }
+    @ApiOperation("根据学科id查课程列表")
+    @GetMapping("/getCourseList/{subjectId}")
+    public Result getCourseListAndSubjectInfoByCourseId(@PathVariable String subjectId){
+        SubjectDetailVO subjectDetailBySubjectId = subjectService.getSubjectDetailBySubjectId(subjectId);
+        List<Course> courseList = courseService.getCourseListByCourseId(subjectId);
+
+        if(BeanUtils.isNotNull(courseList)) {
+            return Result.success(JSON.toJSONString(courseList));
+        }else{
+            return Result.success("[]");
+        }
+    }
+
 
 
 }

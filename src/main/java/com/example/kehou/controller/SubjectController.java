@@ -35,7 +35,7 @@ public class SubjectController {
     }
 
     /**
-     * 用科目id查科目详情
+     * 根据科目id查科目详情
      */
     @ApiOperation("用科目id查科目详情")
     @GetMapping("getSubjectDetail/{subjectId}")

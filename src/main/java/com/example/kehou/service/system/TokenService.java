@@ -35,7 +35,7 @@ public class TokenService {
     /**
      * 生成Token
      *
-     * @param account 用户账号
+     * @param account 用户UserName
      * @return 具体token
      */
     public String createToken(String account) {

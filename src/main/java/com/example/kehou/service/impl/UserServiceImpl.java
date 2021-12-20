@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  *
@@ -37,7 +38,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         // 用户不存在，插入
         User user = new User();
         // todo：密码加密，加盐
-        user.setCreateTime(new Timestamp(new java.util.Date().getTime()));
+        user.setCreateTime(new Date());
         user.setUpdateTime(new Timestamp(new java.util.Date().getTime()));
         user.setUserName(loginBody.getUsername());
         user.setPassword(loginBody.getPassword());

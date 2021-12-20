@@ -17,7 +17,3 @@ public interface FavoritesMapper extends BaseMapper<Favorites> {
 
     int countBySubjectId(String subjectId);
 }
-
-
-
-

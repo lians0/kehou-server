@@ -64,7 +64,7 @@ public class CourseController {
         }
     }
     @ApiOperation("根据学科id查课程列表")
-    @GetMapping("/getCourseList/{subjectId}")
+    @GetMapping("/getCourseListAndSubjectInfo/{subjectId}")
     public Result getCourseListAndSubjectInfoByCourseId(@PathVariable String subjectId){
         SubjectDetailVO subjectDetailBySubjectId = subjectService.getSubjectDetailBySubjectId(subjectId);
         List<Course> courseList = courseService.getCourseListByCourseId(subjectId);

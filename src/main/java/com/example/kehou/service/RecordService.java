@@ -1,6 +1,6 @@
 package com.example.kehou.service;
 
-import com.example.kehou.domain.Record;
+import com.example.kehou.domain.entity.Record;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

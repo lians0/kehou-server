@@ -4,14 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.kehou.mapper.RecordMapper">
 
-    <resultMap id="BaseResultMap" type="com.example.kehou.domain.Record">
-            <id property="recordId" column="record_id" jdbcType="INTEGER"/>
-            <result property="userId" column="user_id" jdbcType="INTEGER"/>
-            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
-            <result property="subjectId" column="subject_id" jdbcType="INTEGER"/>
-            <result property="recordDesc" column="record_desc" jdbcType="VARCHAR"/>
-            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+    <resultMap id="BaseResultMap" type="com.example.kehou.domain.entity.Record">
+        <id property="recordId" column="record_id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="subjectId" column="subject_id" jdbcType="INTEGER"/>
+        <result property="recordDesc" column="record_desc" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Column_List">
@@ -19,4 +19,15 @@
         subject_id,record_desc,create_time,
         update_time
     </sql>
+    <insert id="insertOne" parameterType="record">
+        insert into record
+        values (#{recordId},
+                #{userId},
+                #{userName},
+                #{subjectId},
+                #{recordDesc},
+                #{createTime},
+                #{updateTime});
+
+    </insert>
 </mapper>

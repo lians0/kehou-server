@@ -29,7 +29,7 @@ public class LoginService {
             log.info("用户不存在");
             throw new ServiceException("用户不存在");
         }
-
+        // 将用户名放入token (用户名唯一)
         return tokenService.createToken(loginBody.getUsername());
     }
 }

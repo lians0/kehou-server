@@ -28,6 +28,7 @@
     <select id="getCourseListByCourseId" resultType="com.example.kehou.domain.entity.Course">
         <include refid="Base_Select"/>
         where subject_id = #{subjectId}
+        order by create_time desc
     </select>
     <select id="countBySubjectId" resultType="java.lang.Integer">
         select count(*)

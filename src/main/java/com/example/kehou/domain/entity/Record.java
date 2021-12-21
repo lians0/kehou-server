@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 /**
@@ -16,6 +18,7 @@ public class Record implements Serializable {
     /**
      * 记录id
      */
+    @TableId(type = IdType.AUTO)
     private Integer recordId;
 
     /**
@@ -32,6 +35,11 @@ public class Record implements Serializable {
      * 学科id
      */
     private Integer subjectId;
+
+    /**
+     * 课程id
+     */
+    private Integer courseId;
 
     /**
      * 记录描述

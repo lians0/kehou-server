@@ -4,12 +4,14 @@ import com.alibaba.fastjson.JSON;
 import com.example.kehou.common.utils.BeanUtils;
 import com.example.kehou.domain.Result;
 import com.example.kehou.domain.entity.Course;
+import com.example.kehou.domain.vo.SubjectAndSubjectInfoVO;
 import com.example.kehou.domain.vo.SubjectDetailVO;
 import com.example.kehou.service.CourseService;
 import com.example.kehou.service.SubjectService;
 import com.mysql.cj.xdevapi.JsonArray;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -63,16 +65,16 @@ public class CourseController {
             return Result.success("[]");
         }
     }
-    @ApiOperation("根据学科id查课程列表")
+    @ApiOperation("根据学科id查课程列表和上课记录")
     @GetMapping("/getCourseListAndSubjectInfo/{subjectId}")
     public Result getCourseListAndSubjectInfoByCourseId(@PathVariable String subjectId){
-        SubjectDetailVO subjectDetailBySubjectId = subjectService.getSubjectDetailBySubjectId(subjectId);
-        List<Course> courseList = courseService.getCourseListByCourseId(subjectId);
 
-        if(BeanUtils.isNotNull(courseList)) {
-            return Result.success(JSON.toJSONString(courseList));
+        SubjectAndSubjectInfoVO courseListAndSubjectInfo = courseService.getCourseListAndSubjectInfoByCourseId(subjectId);
+
+        if(BeanUtils.isNotNull(courseListAndSubjectInfo)) {
+            return Result.success(courseListAndSubjectInfo);
         }else{
-            return Result.success("[]");
+            return Result.success("{}");
         }
     }
 

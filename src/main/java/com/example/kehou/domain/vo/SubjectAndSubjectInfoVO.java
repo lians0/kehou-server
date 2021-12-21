@@ -1,7 +1,9 @@
 package com.example.kehou.domain.vo;
 
 import com.example.kehou.domain.entity.Course;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;
@@ -30,7 +32,7 @@ public class SubjectAndSubjectInfoVO {
     List<CourseVO> courseList;
 
     @Data
-    private class CourseVO {
+    public static class CourseVO {
 
         private Integer courseId;
         /**
@@ -48,7 +50,7 @@ public class SubjectAndSubjectInfoVO {
          */
         private Date createTime;
 
-        private Boolean isJoin;
+        private boolean isJoin;
 
     }
 }

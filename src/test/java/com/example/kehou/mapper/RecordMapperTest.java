@@ -1,5 +1,6 @@
 package com.example.kehou.mapper;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.kehou.domain.entity.Record;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,5 +27,13 @@ class RecordMapperTest {
 //        recordMapper.insertOne(record);
 
         recordMapper.insert(record);
+    }
+
+    @Test
+    void selectOne() {
+        QueryWrapper<Record> recordQueryWrapper = new QueryWrapper<>();
+        recordQueryWrapper.eq("record_id","10");
+        Record record = recordMapper.selectOne(recordQueryWrapper);
+        System.out.println(record);
     }
 }

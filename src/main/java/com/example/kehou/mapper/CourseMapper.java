@@ -19,6 +19,7 @@ public interface CourseMapper extends BaseMapper<Course> {
 
     /**
      * 根据学科id查课程列表
+     * 按时间降序
      */
     List<Course> getCourseListByCourseId(String subjectId);
 

@@ -3,6 +3,7 @@ package com.example.kehou.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.kehou.common.exception.job.ServiceException;
 import com.example.kehou.common.utils.BeanUtils;
+import com.example.kehou.common.utils.ContextUtils;
 import com.example.kehou.domain.entity.User;
 import com.example.kehou.domain.model.LoginBody;
 import com.example.kehou.service.UserService;
@@ -43,6 +44,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
         user.setUserName(loginBody.getUsername());
         user.setPassword(loginBody.getPassword());
         userMapper.insertUser(user);
+    }
+
+    public  User getUserInfo(){
+        String username = ContextUtils.getSession().getAttribute("username").toString();
+        return  getUserByUsername(username);
     }
 }
 

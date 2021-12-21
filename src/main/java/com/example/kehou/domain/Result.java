@@ -3,6 +3,7 @@ package com.example.kehou.domain;
 
 import com.alibaba.fastjson.JSON;
 import com.example.kehou.common.constant.HttpStatus;
+import com.example.kehou.common.utils.BeanUtils;
 
 import java.util.HashMap;
 
@@ -82,6 +83,9 @@ public class Result extends HashMap<String, Object> {
      * @return 成功消息
      */
     public static Result success(Object data) {
+//        if(BeanUtils.isNull(data)){
+//            Result.success("操作成功","{}");
+//        }
         return Result.success("操作成功", JSON.toJSONString(data));
     }
 

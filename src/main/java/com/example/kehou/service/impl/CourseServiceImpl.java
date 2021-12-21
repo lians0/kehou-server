@@ -57,6 +57,12 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
         SubjectAndSubjectInfoVO subjectAndSubjectInfoVO = new SubjectAndSubjectInfoVO();
         // 查询课程详情
         SubjectDetailVO subjectDetailBySubjectId = subjectMapper.getSubjectDetailBySubjectId(subjectId);
+        // 查询课程总数
+        QueryWrapper<Course> courseQueryWrapper = new QueryWrapper<>();
+        courseQueryWrapper.eq("subject_id",subjectId);
+        Integer courseTotal = courseMapper.selectCount(courseQueryWrapper);
+        subjectDetailBySubjectId.setCourseTotal(courseTotal);
+        // 复制属性->SubjectAndSubjectInfoVO
         BeanUtils.copyProperties(subjectDetailBySubjectId, subjectAndSubjectInfoVO);
         // 查询所有课程
         List<Course> courseList = courseMapper.getCourseListByCourseId(subjectId);

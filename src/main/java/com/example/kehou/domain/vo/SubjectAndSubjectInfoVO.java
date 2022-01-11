@@ -1,9 +1,6 @@
 package com.example.kehou.domain.vo;
 
-import com.example.kehou.domain.entity.Course;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.Date;
 import java.util.List;

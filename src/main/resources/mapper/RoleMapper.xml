@@ -5,17 +5,22 @@
 <mapper namespace="com.example.kehou.mapper.RoleMapper">
 
     <resultMap id="BaseResultMap" type="com.example.kehou.domain.entity.Role">
-            <id property="roleId" column="role_id" jdbcType="INTEGER"/>
-            <result property="roleName" column="role_name" jdbcType="VARCHAR"/>
-            <result property="status" column="status" jdbcType="INTEGER"/>
-            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
-            <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <id property="roleId" column="role_id" jdbcType="INTEGER"/>
+        <result property="roleName" column="role_name" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
     </resultMap>
 
-    <sql id="Base_Column_List">
-        role_id,role_name,status,
-        create_time,update_time,remark
+    <sql id="Base_Select">
+        select role_id,
+               role_name,
+               status,
+               create_time,
+               update_time,
+               remark
+        from role
     </sql>
 
 

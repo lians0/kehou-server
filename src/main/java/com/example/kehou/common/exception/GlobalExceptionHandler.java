@@ -82,7 +82,7 @@ public class GlobalExceptionHandler {
         String requestURI = request.getRequestURI();
         log.error("请求地址'{}',发生系统异常", requestURI, e);
 
-        return Result.error(e.getMessage());
+        return Result.error("系统异常");
     }
 
 }

@@ -46,6 +46,20 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
         return courseMapper.getCourseListByCourseId(subjectId);
     }
 
+    /**
+     * 根据学科id查课程列表 可分页
+     */
+    @Override
+    public List<Course> getCourseListByCourseId(String subjectId, Integer pageSize, Integer pageNum, Integer orderBy) {
+        int start;
+        if (pageNum == 1) {
+            start = 0;
+        } else
+            start = (pageNum - 1) * pageSize - 1;
+
+        return courseMapper.getCourseListByCourseId(subjectId, start, pageSize, orderBy);
+    }
+
 
     @Override
     public SubjectAndSubjectInfoVO getCourseListAndSubjectInfoByCourseId(String subjectId) {
@@ -59,7 +73,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
         SubjectDetailVO subjectDetailBySubjectId = subjectMapper.getSubjectDetailBySubjectId(subjectId);
         // 查询课程总数
         QueryWrapper<Course> courseQueryWrapper = new QueryWrapper<>();
-        courseQueryWrapper.eq("subject_id",subjectId);
+        courseQueryWrapper.eq("subject_id", subjectId);
         Integer courseTotal = courseMapper.selectCount(courseQueryWrapper);
         subjectDetailBySubjectId.setCourseTotal(courseTotal);
         // 复制属性->SubjectAndSubjectInfoVO

@@ -29,6 +29,9 @@
         <include refid="Base_Select"/>
         where subject_id = #{subjectId}
         order by create_time desc
+        <if test="start !=null and pageSize !=null" >
+            limit #{start},#{pageSize}
+        </if>
     </select>
     <select id="countBySubjectId" resultType="java.lang.Integer">
         select count(*)

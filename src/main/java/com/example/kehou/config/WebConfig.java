@@ -53,7 +53,7 @@ public class WebConfig {
                 new FilterRegistrationBean<>(new TokenFilter());
         registration.addUrlPatterns("/*");
         registration.addInitParameter("excludedUris",
-                "/login,/register,/swagger-resources.*,/doc.html,/v2.*,/webjars.*,/favicon.ico");
+                "/login,/register,/swagger-resources.*,/doc.html,/v2.*,/webjars.*,/favicon.ico,/test.*");
         registration.setOrder(1);
         registration.setName("TokenFilter");
         return registration;

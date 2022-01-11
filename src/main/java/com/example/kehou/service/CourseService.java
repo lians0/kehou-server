@@ -20,6 +20,11 @@ public interface CourseService extends IService<Course> {
     List<Course> getCourseListByCourseId(String subjectId);
 
     /**
+     * 根据学科id查课程列表 可分页
+     */
+    List<Course> getCourseListByCourseId(String subjectId,Integer pageSize,Integer pageNum,Integer orderBy);
+
+    /**
      * 获取课程详情，上课记录，用户是否参与
      * @param subjectId
      * @return

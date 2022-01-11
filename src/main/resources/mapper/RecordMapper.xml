@@ -14,10 +14,15 @@
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <sql id="Base_Column_List">
-        record_id,user_id,user_name,
-        subject_id,record_desc,create_time,
-        update_time
+    <sql id="Base_Select">
+        select record_id,
+               user_id,
+               user_name,
+               subject_id,
+               record_desc,
+               create_time,
+               update_time
+        from record
     </sql>
     <insert id="insertOne" parameterType="record">
         insert into record

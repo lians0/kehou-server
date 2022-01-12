@@ -56,8 +56,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
             start = 0;
         } else
             start = (pageNum - 1) * pageSize - 1;
-
-        return courseMapper.getCourseListByCourseId(subjectId, start, pageSize, orderBy);
+        return courseMapper.getCourseListByCourseIdPaging(subjectId, start, pageSize, orderBy);
     }
 
 

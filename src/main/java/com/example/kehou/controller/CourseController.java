@@ -86,9 +86,7 @@ public class CourseController {
     @ApiOperation("根据学科id查课程列表和上课记录")
     @GetMapping("/getCourseListAndSubjectInfo/{subjectId}")
     public Result getCourseListAndSubjectInfoByCourseId(@PathVariable String subjectId) {
-
         SubjectAndSubjectInfoVO courseListAndSubjectInfo = courseService.getCourseListAndSubjectInfoByCourseId(subjectId);
-
         if (BeanUtils.isNotNull(courseListAndSubjectInfo)) {
             return Result.success(courseListAndSubjectInfo);
         } else {

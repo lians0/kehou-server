@@ -27,7 +27,7 @@ public interface CourseMapper extends BaseMapper<Course> {
      * 根据学科id查课程列表
      * 可分页，指定时间排序规则
      */
-    List<Course> getCourseListByCourseId(String subjectId,Integer start,Integer pageSize,Integer orderBy);
+    List<Course> getCourseListByCourseIdPaging(String subjectId, Integer start, Integer pageSize, Integer orderBy);
 
 
     /**

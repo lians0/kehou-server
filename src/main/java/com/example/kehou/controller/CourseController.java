@@ -4,10 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.example.kehou.common.utils.BeanUtils;
 import com.example.kehou.domain.Result;
 import com.example.kehou.domain.entity.Course;
+import com.example.kehou.domain.entity.User;
 import com.example.kehou.domain.vo.SubjectAndSubjectInfoVO;
 import com.example.kehou.domain.vo.SubjectDetailVO;
 import com.example.kehou.service.CourseService;
 import com.example.kehou.service.SubjectService;
+import com.example.kehou.service.UserService;
 import com.mysql.cj.xdevapi.JsonArray;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -37,10 +39,12 @@ public class CourseController {
     private CourseService courseService;
     @Resource
     private SubjectService subjectService;
+    @Resource
+    private UserService userService;
 
     @GetMapping("/")
     public Result getCourseByUsername(HttpServletRequest request) {
-        String username = (String) request.getAttribute("account");
+        String username = (String) request.getAttribute("username");
 
         return null;
     }

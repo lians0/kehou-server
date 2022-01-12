@@ -1,6 +1,7 @@
 package com.example.kehou.service.system;
 
 import com.example.kehou.common.exception.job.TokenException;
+import com.example.kehou.service.impl.UserServiceImpl;
 import com.nimbusds.jose.*;
 import com.nimbusds.jose.crypto.MACSigner;
 import com.nimbusds.jose.crypto.MACVerifier;

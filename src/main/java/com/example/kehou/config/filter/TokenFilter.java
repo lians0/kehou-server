@@ -1,6 +1,8 @@
 package com.example.kehou.config.filter;
 
 import com.example.kehou.common.exception.job.TokenException;
+import com.example.kehou.domain.entity.User;
+import com.example.kehou.service.impl.UserServiceImpl;
 import com.example.kehou.service.system.TokenService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -23,7 +25,8 @@ public class TokenFilter implements Filter {
 
     private String[] excludedUris ={};
 
-    private TokenService tokenService = new TokenService();
+    private final TokenService tokenService = new TokenService();
+//    private final UserServiceImpl userService = new UserServiceImpl();
 
 
     @Override
@@ -46,15 +49,20 @@ public class TokenFilter implements Filter {
                 break;
             }
         }
+        // 不在排除名单中验证token
         if(!isExcluded){
             String token = httpRequest.getHeader("Auth");
             if(StringUtils.isEmpty(token)){
                 throw new TokenException(httpRequest.getRequestURI()+" 你未登录,请登录");
             }
             log.info(token);
+            // token有效性验证
             String account = tokenService.validToken(token);
             log.info("用户=>>{}",account);
             httpRequest.setAttribute("username",account);
+            // 使用username获取基本信息
+//            User userByUsername = userService.getUserByUsername(account);
+//            httpRequest.setAttribute("user",userByUsername);
         }
         chain.doFilter(request, response);
     }

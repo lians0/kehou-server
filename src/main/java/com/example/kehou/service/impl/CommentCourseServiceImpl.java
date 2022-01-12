@@ -25,6 +25,13 @@ public class CommentCourseServiceImpl extends ServiceImpl<CommentCourseMapper, C
 
         return courseList;
     }
+
+    @Override
+    public int addCommentCourse(CommentCourse commentCourse) {
+        int insert = baseMapper.insert(commentCourse);
+
+        return insert;
+    }
 }
 
 

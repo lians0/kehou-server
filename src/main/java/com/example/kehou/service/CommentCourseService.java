@@ -18,4 +18,13 @@ public interface CommentCourseService extends IService<CommentCourse> {
      * @date 2022/1/12
      */
     List<CommentCourse> getCommentCourseBySubjectId(String subjectId);
+
+    /**
+     * 插入一条数据到CommentCourse
+     * @param commentCourse
+     * @return int
+     * @author shuanglian
+     * @date 2022/1/12
+     */
+    int addCommentCourse(CommentCourse commentCourse);
 }

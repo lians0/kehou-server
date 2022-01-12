@@ -72,7 +72,7 @@ public class CourseController {
     @ApiOperation("根据学科id查课程列表 可分页")
     @PostMapping("/getCourseList")
     public Result getCourseListByCourseId(String subjectId, @Nullable Integer pageSize,@Nullable Integer pageNum,@Nullable Integer orderBy) {
-        if (pageNum<=0) {
+        if (pageNum==null||pageNum<=0) {
             return Result.error("pageNum必须>0");
         }
         List<Course> courseList = courseService.getCourseListByCourseId(subjectId,pageSize,pageNum,orderBy);

@@ -5,21 +5,19 @@
 <mapper namespace="com.example.kehou.mapper.CommentCourseMapper">
 
     <resultMap id="BaseResultMap" type="com.example.kehou.domain.entity.CommentCourse">
-        <id property="commentId" column="comment_id" jdbcType="INTEGER"/>
-        <result property="userId" column="user_id" jdbcType="INTEGER"/>
-        <result property="subjectId" column="subject_id" jdbcType="INTEGER"/>
-        <result property="semesterId" column="semester_id" jdbcType="INTEGER"/>
-        <result property="testType" column="test_type" jdbcType="VARCHAR"/>
-        <result property="commentText" column="comment_text" jdbcType="VARCHAR"/>
+            <id property="commentId" column="comment_id" jdbcType="INTEGER"/>
+            <result property="userId" column="user_id" jdbcType="INTEGER"/>
+            <result property="subjectId" column="subject_id" jdbcType="INTEGER"/>
+            <result property="semesterId" column="semester_id" jdbcType="INTEGER"/>
+            <result property="testType" column="test_type" jdbcType="VARCHAR"/>
+            <result property="commentText" column="comment_text" jdbcType="VARCHAR"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <sql id="Base_Select">
-        select comment_id,
-               user_id,
-               subject_id,
-               semester_id,
-               test_type,
-               comment_text
-        from comment_course
+    <sql id="Base_Column_List">
+        comment_id,user_id,subject_id,
+        semester_id,test_type,comment_text,
+        create_time,update_time
     </sql>
 </mapper>

@@ -4,10 +4,13 @@ import com.alibaba.fastjson.JSON;
 import com.example.kehou.common.utils.BeanUtils;
 import com.example.kehou.domain.Result;
 import com.example.kehou.domain.entity.Course;
+import com.example.kehou.domain.entity.Record;
 import com.example.kehou.domain.entity.User;
+import com.example.kehou.domain.vo.CourseAndIsJoinVO;
 import com.example.kehou.domain.vo.SubjectAndSubjectInfoVO;
 import com.example.kehou.domain.vo.SubjectDetailVO;
 import com.example.kehou.service.CourseService;
+import com.example.kehou.service.RecordService;
 import com.example.kehou.service.SubjectService;
 import com.example.kehou.service.UserService;
 import com.mysql.cj.xdevapi.JsonArray;
@@ -20,7 +23,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * (Course)表控制层
@@ -41,6 +46,10 @@ public class CourseController {
     private SubjectService subjectService;
     @Resource
     private UserService userService;
+    @Resource
+    private HttpServletRequest autowiredRequest;
+    @Resource
+    private RecordService recordService;
 
     @GetMapping("/")
     public Result getCourseByUsername(HttpServletRequest request) {
@@ -61,41 +70,60 @@ public class CourseController {
         }
     }
 
-    // todo: 分页查询
-    @ApiOperation("根据学科id查课程列表")
+    @ApiOperation("根据学科id查课程列表和学生参与情况")
     @GetMapping("/getCourseList/{subjectId}")
     public Result getCourseListByCourseId(@PathVariable String subjectId) {
+        String username = (String) autowiredRequest.getAttribute("username");
+        User user = userService.getUserByUsername(username);
+        // 查出课程id
         List<Course> courseList = courseService.getCourseListByCourseId(subjectId);
-        if (BeanUtils.isNotNull(courseList)) {
-            return Result.success(courseList);
-        } else {
-            return Result.success("[]");
+        // 查出该用户参加的所有课程记录
+        List<Record> recordList = recordService.getRecordListByUserid(user.getUserId().toString());
+        ArrayList<CourseAndIsJoinVO> courseAndIsJoinVOList = new ArrayList<>();
+        for (Course course : courseList) {
+            CourseAndIsJoinVO courseAndIsJoinVO = new CourseAndIsJoinVO();
+            BeanUtils.copyProperties(course, courseAndIsJoinVO);
+            courseAndIsJoinVO.setIsJoin(false);
+            for (Record record : recordList) {
+                if (Objects.equals(record.getCourseId(), course.getCourseId())) {
+                    courseAndIsJoinVO.setIsJoin(true);
+                    break;
+                }
+            }
+            courseAndIsJoinVOList.add(courseAndIsJoinVO);
         }
+        return Result.success(courseAndIsJoinVOList);
     }
 
+    /**
+     * 根据学科id查课程列表 可分页
+     *
+     * @param subjectId 课程id
+     * @param pageSize  分页大小
+     * @param pageNum   当前是第几页
+     * @param orderBy   todo:暂时没用
+     * @return com.example.kehou.domain.Result
+     * @author shuanglian
+     * @date 2022/1/13
+     */
     @ApiOperation("根据学科id查课程列表 可分页")
     @PostMapping("/getCourseList")
-    public Result getCourseListByCourseId(String subjectId, @Nullable Integer pageSize,@Nullable Integer pageNum,@Nullable Integer orderBy) {
-        if (pageNum==null||pageNum<=0) {
+    public Result getCourseListByCourseId(String subjectId, @Nullable Integer pageSize,
+                                          @Nullable Integer pageNum, @Nullable Integer orderBy) {
+        if (pageNum == null || pageNum <= 0) {
             return Result.error("pageNum必须>0");
         }
-        List<Course> courseList = courseService.getCourseListByCourseId(subjectId,pageSize,pageNum,orderBy);
-        if (BeanUtils.isNotNull(courseList)) {
-            return Result.success(courseList);
-        } else {
-            return Result.success("[]");
-        }
+        List<Course> courseList = courseService.getCourseListByCourseId(subjectId, pageSize, pageNum, orderBy);
+        return Result.success(courseList);
     }
 
+    // todo: 与/course/getCourseList/{{subjectId}}整合
     @ApiOperation("根据学科id查课程列表和上课记录")
     @GetMapping("/getCourseListAndSubjectInfo/{subjectId}")
     public Result getCourseListAndSubjectInfoByCourseId(@PathVariable String subjectId) {
-        SubjectAndSubjectInfoVO courseListAndSubjectInfo = courseService.getCourseListAndSubjectInfoByCourseId(subjectId);
-        if (BeanUtils.isNotNull(courseListAndSubjectInfo)) {
-            return Result.success(courseListAndSubjectInfo);
-        } else {
-            return Result.success("{}");
-        }
+        SubjectAndSubjectInfoVO courseListAndSubjectInfo =
+                courseService.getCourseListAndSubjectInfoByCourseId(subjectId);
+        return Result.success(courseListAndSubjectInfo);
     }
 
 }

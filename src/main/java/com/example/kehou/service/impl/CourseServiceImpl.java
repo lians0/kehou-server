@@ -6,15 +6,16 @@ import com.example.kehou.common.utils.BeanUtils;
 import com.example.kehou.common.utils.ContextUtils;
 import com.example.kehou.domain.entity.Course;
 import com.example.kehou.domain.entity.Record;
+import com.example.kehou.domain.entity.User;
+import com.example.kehou.domain.vo.FavoritesVO;
 import com.example.kehou.domain.vo.SubjectAndSubjectInfoVO;
 import com.example.kehou.domain.vo.SubjectDetailVO;
-import com.example.kehou.mapper.RecordMapper;
-import com.example.kehou.mapper.SubjectMapper;
+import com.example.kehou.mapper.*;
 import com.example.kehou.service.CourseService;
-import com.example.kehou.mapper.CourseMapper;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,12 +24,15 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
         implements CourseService {
     @Resource
     private CourseMapper courseMapper;
-
     @Resource
     private SubjectMapper subjectMapper;
-
     @Resource
     private RecordMapper recordMapper;
+    @Resource
+    private HttpServletRequest request;
+    @Resource
+    private FavoritesMapper favoritesMapper;
+
 
     /**
      * 根据课程id查课程
@@ -77,6 +81,14 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
         subjectDetailBySubjectId.setCourseTotal(courseTotal);
         // 复制属性->SubjectAndSubjectInfoVO
         BeanUtils.copyProperties(subjectDetailBySubjectId, subjectAndSubjectInfoVO);
+        // 查询当前用户是否参加当前课程
+        subjectAndSubjectInfoVO.setJoin(false);
+        List<FavoritesVO> favoritesVOList = favoritesMapper.getFavoritesByUsername((String) request.getAttribute("username"));
+        for (FavoritesVO favoritesVO : favoritesVOList) {
+            if (favoritesVO.getSubjectId().equals(subjectId)) {
+                subjectAndSubjectInfoVO.setJoin(true);
+            }
+        }
         // 查询所有课程
         List<Course> courseList = courseMapper.getCourseListByCourseId(subjectId);
         // 将课程list -->List<SubjectAndSubjectInfoVO.CourseVO>

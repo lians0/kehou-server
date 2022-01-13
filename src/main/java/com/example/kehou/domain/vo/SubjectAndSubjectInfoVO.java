@@ -53,6 +53,9 @@ public class SubjectAndSubjectInfoVO {
          */
         private Date createTime;
 
+        /**
+         * 该学科的该课程是否参与
+         */
         private boolean isJoin;
 
     }

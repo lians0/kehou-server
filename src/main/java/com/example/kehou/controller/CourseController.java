@@ -103,7 +103,7 @@ public class CourseController {
      * @param pageNum   当前是第几页
      * @param orderBy   todo:暂时没用
      * @return com.example.kehou.domain.Result
-     * @author shuanglian
+     * @author ShuangLian
      * @date 2022/1/13
      */
     @ApiOperation("根据学科id查课程列表 可分页")

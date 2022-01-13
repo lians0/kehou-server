@@ -52,6 +52,9 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
 
     /**
      * 根据学科id查课程列表 可分页
+     * @return 课程列表
+     * @author shuanglian
+     * @date 2022/1/13
      */
     @Override
     public List<Course> getCourseListByCourseId(String subjectId, Integer pageSize, Integer pageNum, Integer orderBy) {
@@ -64,6 +67,11 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
     }
 
 
+    /**
+     * 获取课程详情，上课记录，用户<Strong>课程与学科</Strong>是否参与
+     * @param subjectId 学科Id
+     * @author ShuangLian
+     */
     @Override
     public SubjectAndSubjectInfoVO getCourseListAndSubjectInfoByCourseId(String subjectId) {
         /*

@@ -26,8 +26,8 @@ public interface CourseService extends IService<Course> {
 
     /**
      * 获取课程详情，上课记录，用户<Strong>课程与学科</Strong>是否参与
-     * @param subjectId
-     * @return
+     * @param subjectId 学科Id
+     * @author ShuangLian
      */
     SubjectAndSubjectInfoVO getCourseListAndSubjectInfoByCourseId(String subjectId);
 }

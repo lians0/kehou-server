@@ -1,6 +1,5 @@
 package com.example.kehou.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.example.kehou.common.utils.BeanUtils;
 import com.example.kehou.domain.Result;
 import com.example.kehou.domain.entity.Course;
@@ -8,16 +7,12 @@ import com.example.kehou.domain.entity.Record;
 import com.example.kehou.domain.entity.User;
 import com.example.kehou.domain.vo.CourseAndIsJoinVO;
 import com.example.kehou.domain.vo.SubjectAndSubjectInfoVO;
-import com.example.kehou.domain.vo.SubjectDetailVO;
 import com.example.kehou.service.CourseService;
 import com.example.kehou.service.RecordService;
 import com.example.kehou.service.SubjectService;
 import com.example.kehou.service.UserService;
-import com.mysql.cj.xdevapi.JsonArray;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,7 +25,7 @@ import java.util.Objects;
 /**
  * (Course)表控制层
  *
- * @author makejava
+ * @author ShuangLian
  * @since 2021-11-30 17:36:43
  */
 @RestController
@@ -70,7 +65,15 @@ public class CourseController {
         }
     }
 
-    @ApiOperation("根据学科id查课程列表和学生参与情况")
+    /**
+     * 根据学科id查课程和学生参与情况列表
+     *
+     * @param subjectId 课程id
+     * @return 课程和学生参与情况列表
+     * @author ShuangLian
+     * @date 2022/1/14
+     */
+    @ApiOperation("根据学科id查课程和学生参与情况列表")
     @GetMapping("/getCourseList/{subjectId}")
     public Result getCourseListByCourseId(@PathVariable String subjectId) {
         String username = (String) autowiredRequest.getAttribute("username");
@@ -108,8 +111,7 @@ public class CourseController {
      */
     @ApiOperation("根据学科id查课程列表 可分页")
     @PostMapping("/getCourseList")
-    public Result getCourseListByCourseId(String subjectId, @Nullable Integer pageSize,
-                                          @Nullable Integer pageNum, @Nullable Integer orderBy) {
+    public Result getCourseListByCourseId(String subjectId, @Nullable Integer pageSize, @Nullable Integer pageNum, @Nullable Integer orderBy) {
         if (pageNum == null || pageNum <= 0) {
             return Result.error("pageNum必须>0");
         }
@@ -117,12 +119,20 @@ public class CourseController {
         return Result.success(courseList);
     }
 
-    // todo: 与/course/getCourseList/{{subjectId}}整合
-    @ApiOperation("根据学科id查课程列表和上课记录")
+    /**
+     * 根据学科id查学科详情和上课记录
+     * <p>
+     * todo: 与/course/getCourseList/{{subjectId}}整合
+     *
+     * @param subjectId 学科Id
+     * @return 学科详情和上课记录列表
+     * @author ShuangLian
+     * @date 2022/1/14
+     */
+    @ApiOperation("根据学科id查学科详情和上课记录列表")
     @GetMapping("/getCourseListAndSubjectInfo/{subjectId}")
     public Result getCourseListAndSubjectInfoByCourseId(@PathVariable String subjectId) {
-        SubjectAndSubjectInfoVO courseListAndSubjectInfo =
-                courseService.getCourseListAndSubjectInfoByCourseId(subjectId);
+        SubjectAndSubjectInfoVO courseListAndSubjectInfo = courseService.getCourseListAndSubjectInfoByCourseId(subjectId);
         return Result.success(courseListAndSubjectInfo);
     }
 

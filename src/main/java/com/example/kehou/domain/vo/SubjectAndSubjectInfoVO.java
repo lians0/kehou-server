@@ -36,27 +36,22 @@ public class SubjectAndSubjectInfoVO {
 
     @Data
     public static class CourseVO {
-
         private Integer courseId;
         /**
          * 课程名称
          */
         private String courseName;
-
         /**
          * 所属学科
          */
         private Integer subjectId;
-
         /**
          * 创建时间
          */
         private Date createTime;
-
         /**
          * 该学科的该课程是否参与
          */
         private boolean isJoin;
-
     }
 }

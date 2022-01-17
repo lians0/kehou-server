@@ -29,4 +29,14 @@ class UserServiceTest {
     @Test
     void register() {
     }
+
+    @Test
+    void getUserByUserId() {
+        System.out.println(userService.getUserByUserId("1"));
+
+    }
+
+    @Test
+    void testRegister() {
+    }
 }

@@ -25,7 +25,7 @@ public class Course implements Serializable {
     private String courseName;
 
     /**
-     * 所属学科
+     * 所属学科Id
      */
     private Integer subjectId;
 

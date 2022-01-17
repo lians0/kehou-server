@@ -6,12 +6,13 @@ import com.example.kehou.domain.model.LoginBody;
 
 /**
  *
- *
  */
 
 public interface UserService extends IService<User> {
 
-     User getUserByUsername(String username);
+    User getUserByUsername(String username);
+
+    User getUserByUserId(String userId);
 
     void register(LoginBody loginBody);
 }

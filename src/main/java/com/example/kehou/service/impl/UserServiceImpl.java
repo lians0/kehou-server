@@ -30,6 +30,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User>
     }
 
     @Override
+    public User getUserByUserId(String userId) {
+        return baseMapper.selectById(userId);
+    }
+
+    @Override
     public void register(LoginBody loginBody) {
         // 用户已经存在  用户名唯一
         if (BeanUtils.isNotNull(userMapper.getUserByUsername(loginBody.getUsername()))) {

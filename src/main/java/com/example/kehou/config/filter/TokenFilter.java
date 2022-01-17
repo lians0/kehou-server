@@ -58,7 +58,7 @@ public class TokenFilter implements Filter {
             log.info(token);
             // token有效性验证
             String account = tokenService.validToken(token);
-            log.info("用户=>>{}",account);
+            log.info("用户:[{}],请求地址：{}",account,((HttpServletRequest) request).getServletPath());
             httpRequest.setAttribute("username",account);
             // 使用username获取基本信息
 //            User userByUsername = userService.getUserByUsername(account);

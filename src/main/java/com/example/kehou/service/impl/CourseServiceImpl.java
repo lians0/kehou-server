@@ -1,6 +1,7 @@
 package com.example.kehou.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.kehou.common.utils.BeanUtils;
 import com.example.kehou.common.utils.ContextUtils;
@@ -46,18 +47,19 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
      * 根据学科id查课程列表
      */
     @Override
-    public List<Course> getCourseListByCourseId(String subjectId) {
+    public List<Course> getCourseListBySubjectId(String subjectId) {
         return courseMapper.getCourseListByCourseId(subjectId);
     }
 
     /**
      * 根据学科id查课程列表 可分页
+     *
      * @return 课程列表
      * @author shuanglian
      * @date 2022/1/13
      */
     @Override
-    public List<Course> getCourseListByCourseId(String subjectId, Integer pageSize, Integer pageNum, Integer orderBy) {
+    public List<Course> getCourseListBySubjectId(String subjectId, Integer pageSize, Integer pageNum, Integer orderBy) {
         int start;
         if (pageNum == 1) {
             start = 0;
@@ -69,6 +71,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
 
     /**
      * 获取课程详情，上课记录，用户<Strong>课程与学科</Strong>是否参与
+     *
      * @param subjectId 学科Id
      * @author ShuangLian
      */
@@ -116,6 +119,16 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
         subjectAndSubjectInfoVO.setCourseList(courseList1);
 
         return subjectAndSubjectInfoVO;
+    }
+
+    // 查询课程
+    public List<Course> searchCourse(String searchValue) {
+        QueryWrapper<Course> queryWrapper = new QueryWrapper<>();
+        queryWrapper.like("course_name", searchValue)
+                .orderByDesc("create_time")
+                .last("limit 3");
+        List<Course> courseList = baseMapper.selectList(queryWrapper);
+        return courseList;
     }
 }
 

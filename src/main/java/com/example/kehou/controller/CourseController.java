@@ -79,7 +79,7 @@ public class CourseController {
         String username = (String) autowiredRequest.getAttribute("username");
         User user = userService.getUserByUsername(username);
         // 查出课程id
-        List<Course> courseList = courseService.getCourseListByCourseId(subjectId);
+        List<Course> courseList = courseService.getCourseListBySubjectId(subjectId);
         // 查出该用户参加的所有课程记录
         List<Record> recordList = recordService.getRecordListByUserid(user.getUserId().toString());
         ArrayList<CourseAndIsJoinVO> courseAndIsJoinVOList = new ArrayList<>();
@@ -115,7 +115,7 @@ public class CourseController {
         if (pageNum == null || pageNum <= 0) {
             return Result.error("pageNum必须>0");
         }
-        List<Course> courseList = courseService.getCourseListByCourseId(subjectId, pageSize, pageNum, orderBy);
+        List<Course> courseList = courseService.getCourseListBySubjectId(subjectId, pageSize, pageNum, orderBy);
         return Result.success(courseList);
     }
 

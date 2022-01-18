@@ -7,7 +7,7 @@ import lombok.Data;
  * @date 2022/1/17 16:47
  */
 @Data
-public class CourseDTO {
+public class CourseSearchDTO {
     /**
      * 课程Id
      */

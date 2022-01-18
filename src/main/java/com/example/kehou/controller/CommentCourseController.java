@@ -7,6 +7,7 @@ import com.example.kehou.domain.entity.User;
 import com.example.kehou.domain.model.CommentCourseBody;
 import com.example.kehou.service.CommentCourseService;
 import com.example.kehou.service.UserService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,7 @@ import java.util.List;
  * @author makejava
  * @since 2022-01-12 10:30:26
  */
+@Api(tags = "课程评价接口")
 @RestController
 @RequestMapping("commentCourse")
 public class CommentCourseController {

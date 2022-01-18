@@ -1,8 +1,8 @@
 package com.example.kehou.service.system;
 
 import com.example.kehou.common.utils.BeanUtils;
-import com.example.kehou.domain.dto.CourseDTO;
-import com.example.kehou.domain.dto.SubjectDTO;
+import com.example.kehou.domain.dto.CourseSearchDTO;
+import com.example.kehou.domain.dto.SubjectSearchDTO;
 import com.example.kehou.domain.entity.Course;
 import com.example.kehou.domain.entity.Subject;
 import com.example.kehou.domain.vo.SearchResultVO;
@@ -11,7 +11,6 @@ import com.example.kehou.service.SubjectService;
 import com.example.kehou.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -36,33 +35,33 @@ public class SearchService {
 
     public SearchResultVO searchAll(String searchType, String searchValue) {
         List<Course> courseList = courseService.searchCourse(searchValue);
-        ArrayList<CourseDTO> courseDTOS = new ArrayList<>();
+        ArrayList<CourseSearchDTO> courseSearchDTOS = new ArrayList<>();
         if (courseList.size() != 0) {
             //遍历去查课程对应学科名
             for (Course course : courseList) {
-                CourseDTO courseDTO = new CourseDTO();
-                BeanUtils.copyProperties(course, courseDTO);
+                CourseSearchDTO courseSearchDTO = new CourseSearchDTO();
+                BeanUtils.copyProperties(course, courseSearchDTO);
                 String subjectName = subjectService.getSubjectBySubjectId(course.getSubjectId().toString()).getSubjectName();
-                courseDTO.setSubjectName(subjectName);
-                courseDTOS.add(courseDTO);
+                courseSearchDTO.setSubjectName(subjectName);
+                courseSearchDTOS.add(courseSearchDTO);
             }
         }
 
         List<Subject> subjectList = subjectService.searchSubject(searchValue);
-        ArrayList<SubjectDTO> subjectDTOS = new ArrayList<>();
+        ArrayList<SubjectSearchDTO> subjectSearchDTOS = new ArrayList<>();
         if (subjectList.size()!=0) {
             //遍历去查学科对应学老师
             for (Subject subject : subjectList) {
-                SubjectDTO subjectDTO = new SubjectDTO();
-                BeanUtils.copyProperties(subject,subjectDTO);
+                SubjectSearchDTO subjectSearchDTO = new SubjectSearchDTO();
+                BeanUtils.copyProperties(subject, subjectSearchDTO);
                 String loginName = userService.getUserByUserId(subject.getCreatorId().toString()).getLoginName();
-                subjectDTO.setCreatorName(loginName);
-                subjectDTOS.add(subjectDTO);
+                subjectSearchDTO.setCreatorName(loginName);
+                subjectSearchDTOS.add(subjectSearchDTO);
             }
         }
         SearchResultVO searchResultVO = new SearchResultVO();
-        searchResultVO.setCourseList(courseDTOS);
-        searchResultVO.setSubjectList(subjectDTOS);
+        searchResultVO.setCourseList(courseSearchDTOS);
+        searchResultVO.setSubjectList(subjectSearchDTOS);
         return searchResultVO;
     }
 

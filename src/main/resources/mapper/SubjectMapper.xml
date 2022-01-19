@@ -27,10 +27,11 @@
         from subject
     </sql>
     <select id="getSubjectDetailBySubjectId" resultType="com.example.kehou.domain.vo.SubjectDetailVO">
-        Select b.login_name   as teacher,
+        Select a.subject_id   as subjectId,
+               b.login_name   as teacher,
                a.subject_name as subjectName,
                a.subject_desc as subjectDesc,
-               a.icon as subjectIcon,
+               a.icon         as subjectIcon,
                count(*)       as joinTotal
         from subject a,
              user b

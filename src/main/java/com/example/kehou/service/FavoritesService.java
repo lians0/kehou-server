@@ -12,4 +12,8 @@ import java.util.List;
 public interface FavoritesService extends IService<Favorites> {
 
     List<FavoritesVO> getFavoritesByUsername(String username);
+
+    Integer delFavoriteByUserIdAndSubjectId(String userId, String subjectId);
+
+    Integer addFavoritesByUserIdAndSubjectId(String userId, String subjectId);
 }

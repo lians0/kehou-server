@@ -30,11 +30,11 @@ public class GlobalExceptionHandler {
 ////        log.info("binder.getFieldDefaultPrefix {}",binder.getFieldDefaultPrefix());
 ////        log.info("binder.getFieldMarkerPrefix {}",binder.getFieldMarkerPrefix());
 //    }
-    /**
-     * 全局数据绑定
-     * 把值绑定到Model中，使全局@RequestMapping可以获取到该值
-     * @param model
-     */
+//    /**
+//     * 全局数据绑定
+//     * 把值绑定到Model中，使全局@RequestMapping可以获取到该值
+//     * @param model
+//     */
 //    @ModelAttribute
 //    public void addAttributes(Model model) {
 ////        model.addAttribute("author", "harry");
@@ -56,8 +56,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ServiceException.class)
     public Result handleServiceException(ServiceException e, HttpServletRequest request){
 //        System.out.println("捕获异常");
-        String requestURI = request.getRequestURI();
-        log.error("请求地址{}，{}",requestURI,e.getMessage());
+        String requestUrl = request.getRequestURI();
+        log.error("请求地址{}，{}",requestUrl,e.getMessage());
         return Result.error(HttpStatus.ERROR,e.getMessage());
     }
 
@@ -79,8 +79,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public Result handleException(Exception e, HttpServletRequest request)
     {
-        String requestURI = request.getRequestURI();
-        log.error("请求地址'{}',发生系统异常", requestURI, e);
+        String requestUrl = request.getRequestURI();
+        log.error("请求地址'{}',发生系统异常", requestUrl, e);
 
         return Result.error("系统异常");
     }

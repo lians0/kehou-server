@@ -9,7 +9,7 @@ public class BeanUtils extends org.springframework.beans.BeanUtils {
         return o == null;
     }
      public static boolean isNotNull(Object o){
-        return !(o == null);
+        return o != null;
     }
 
 }

@@ -63,8 +63,9 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
         int start;
         if (pageNum == 1) {
             start = 0;
-        } else
+        } else {
             start = (pageNum - 1) * pageSize - 1;
+        }
         return courseMapper.getCourseListByCourseIdPaging(subjectId, start, pageSize, orderBy);
     }
 
@@ -113,7 +114,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
                     .eq("course_id", course.getCourseId())
                     .eq("user_name", ContextUtils.getUsername());
             Integer count = recordMapper.selectCount(recordQueryWrapper);
-            courseVO.setJoin(!(count == 0));
+            courseVO.setJoin(count != 0);
             courseList1.add(courseVO);
         }
         subjectAndSubjectInfoVO.setCourseList(courseList1);
@@ -121,7 +122,14 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
         return subjectAndSubjectInfoVO;
     }
 
-    // 查询课程
+    /**
+     * 查询课程
+     * @param searchValue
+     * @return java.util.List<com.example.kehou.domain.entity.Course>
+     * @author ShuangLian
+     * @date 2022/1/19
+     */
+    @Override
     public List<Course> searchCourse(String searchValue) {
         QueryWrapper<Course> queryWrapper = new QueryWrapper<>();
         queryWrapper.like("course_name", searchValue)

@@ -15,10 +15,10 @@ public class DateUtils {
      */
     public static String now() {
 
-        Date current_date = new Date();
+        Date currentDate = new Date();
         //设置日期格式化样式为：yyyy-MM-dd
-        SimpleDateFormat SimpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         //格式化当前日期
-        return SimpleDateFormat.format(current_date.getTime());
+        return simpleDateFormat.format(currentDate.getTime());
     }
 }

@@ -38,7 +38,7 @@ public class SwaggerConfig {
                 .title("KeHou")
                 .description("Kehou 接口")
                 .termsOfServiceUrl("http://localhost:5050/")
-                .contact("913240512@qq.com")
+//                .contact("913240512@qq.com")
                 .version("1.0")
                 .build();
     }

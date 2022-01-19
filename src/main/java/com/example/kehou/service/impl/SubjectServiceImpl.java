@@ -42,6 +42,7 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject>
         return subjectDetailVO;
     }
 
+    @Override
     public List<Subject> searchSubject(String searchValue){
         QueryWrapper<Subject> queryWrapper = new QueryWrapper<>();
         queryWrapper.like("subject_name",searchValue)

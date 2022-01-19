@@ -11,16 +11,34 @@ public interface CourseService extends IService<Course> {
 
     /**
      * 根据课程id查课程
+     *
+     * @param courseId
+     * @return com.example.kehou.domain.entity.Course
+     * @author ShuangLian
+     * @date 2022/1/19
      */
     Course getCourseByCourseId(String courseId);
 
     /**
      * 根据学科id查课程列表
+     *
+     * @param subjectId
+     * @return
+     * @author ShuangLian
+     * @date 2022/1/19
      */
     List<Course> getCourseListBySubjectId(String subjectId);
 
+
     /**
      * 根据学科id查课程列表 可分页
+     * @param subjectId
+     * @param pageSize
+     * @param pageNum
+     * @param orderBy
+     * @return java.util.List<com.example.kehou.domain.entity.Course>
+     * @author ShuangLian
+     * @date 2022/1/19
      */
     List<Course> getCourseListBySubjectId(String subjectId, Integer pageSize, Integer pageNum, Integer orderBy);
 

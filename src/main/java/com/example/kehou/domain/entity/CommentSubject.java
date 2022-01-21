@@ -11,9 +11,9 @@ import lombok.Data;
  * 课程评价
  * @TableName comment_course
  */
-@TableName(value ="comment_course")
+@TableName(value ="comment_subject")
 @Data
-public class CommentCourse implements Serializable {
+public class CommentSubject implements Serializable {
     /**
      * 课程评价id
      */

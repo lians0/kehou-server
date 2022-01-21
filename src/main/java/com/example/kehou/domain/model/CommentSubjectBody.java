@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CommentCourseBody {
+public class CommentSubjectBody {
     private Integer subjectId;
     private String testType;
     private String commentText;

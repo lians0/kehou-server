@@ -53,6 +53,6 @@ public class SubjectAndSubjectInfoVO {
         /**
          * 该学科的该课程是否参与
          */
-        private boolean isJoin;
+//        private boolean isJoin;
     }
 }

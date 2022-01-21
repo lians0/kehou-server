@@ -3,12 +3,8 @@ package com.example.kehou.controller;
 import com.example.kehou.common.utils.BeanUtils;
 import com.example.kehou.domain.Result;
 import com.example.kehou.domain.entity.Course;
-import com.example.kehou.domain.entity.Record;
-import com.example.kehou.domain.entity.User;
-import com.example.kehou.domain.vo.CourseAndIsJoinVO;
 import com.example.kehou.domain.vo.SubjectAndSubjectInfoVO;
 import com.example.kehou.service.CourseService;
-import com.example.kehou.service.RecordService;
 import com.example.kehou.service.SubjectService;
 import com.example.kehou.service.UserService;
 import io.swagger.annotations.Api;
@@ -18,9 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * (Course)表控制层
@@ -43,8 +37,6 @@ public class CourseController {
     private UserService userService;
     @Resource
     private HttpServletRequest autowiredRequest;
-    @Resource
-    private RecordService recordService;
 
     @GetMapping("/")
     public Result getCourseByUsername(HttpServletRequest request) {
@@ -63,39 +55,6 @@ public class CourseController {
         } else {
             return Result.success("{}");
         }
-    }
-
-    /**
-     * 根据学科id查课程和学生参与情况列表
-     *
-     * @param subjectId 课程id
-     * @return 课程和学生参与情况列表
-     * @author ShuangLian
-     * @date 2022/1/14
-     */
-    @ApiOperation("根据学科id查课程和学生参与情况列表")
-    @GetMapping("/getCourseList/{subjectId}")
-    public Result getCourseListByCourseId(@PathVariable String subjectId) {
-        String username = (String) autowiredRequest.getAttribute("username");
-        User user = userService.getUserByUsername(username);
-        // 查出课程id
-        List<Course> courseList = courseService.getCourseListBySubjectId(subjectId);
-        // 查出该用户参加的所有课程记录
-        List<Record> recordList = recordService.getRecordListByUserid(user.getUserId().toString());
-        ArrayList<CourseAndIsJoinVO> courseAndIsJoinVOList = new ArrayList<>();
-        for (Course course : courseList) {
-            CourseAndIsJoinVO courseAndIsJoinVO = new CourseAndIsJoinVO();
-            BeanUtils.copyProperties(course, courseAndIsJoinVO);
-            courseAndIsJoinVO.setIsJoin(false);
-            for (Record record : recordList) {
-                if (Objects.equals(record.getCourseId(), course.getCourseId())) {
-                    courseAndIsJoinVO.setIsJoin(true);
-                    break;
-                }
-            }
-            courseAndIsJoinVOList.add(courseAndIsJoinVO);
-        }
-        return Result.success(courseAndIsJoinVOList);
     }
 
     /**

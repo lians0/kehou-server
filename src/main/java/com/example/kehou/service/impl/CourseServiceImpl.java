@@ -1,17 +1,15 @@
 package com.example.kehou.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.kehou.common.utils.BeanUtils;
-import com.example.kehou.common.utils.ContextUtils;
 import com.example.kehou.domain.entity.Course;
-import com.example.kehou.domain.entity.Record;
-import com.example.kehou.domain.entity.User;
 import com.example.kehou.domain.vo.FavoritesVO;
 import com.example.kehou.domain.vo.SubjectAndSubjectInfoVO;
 import com.example.kehou.domain.vo.SubjectDetailVO;
-import com.example.kehou.mapper.*;
+import com.example.kehou.mapper.CourseMapper;
+import com.example.kehou.mapper.FavoritesMapper;
+import com.example.kehou.mapper.SubjectMapper;
 import com.example.kehou.service.CourseService;
 import org.springframework.stereotype.Service;
 
@@ -27,8 +25,6 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
     private CourseMapper courseMapper;
     @Resource
     private SubjectMapper subjectMapper;
-    @Resource
-    private RecordMapper recordMapper;
     @Resource
     private HttpServletRequest request;
     @Resource
@@ -78,11 +74,6 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
      */
     @Override
     public SubjectAndSubjectInfoVO getCourseListAndSubjectInfoByCourseId(String subjectId) {
-        /*
-            查询课程详情
-            课程记录
-                用户是否参加
-         */
         SubjectAndSubjectInfoVO subjectAndSubjectInfoVO = new SubjectAndSubjectInfoVO();
         // 查询课程详情
         SubjectDetailVO subjectDetailBySubjectId = subjectMapper.getSubjectDetailBySubjectId(subjectId);
@@ -93,7 +84,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
         subjectDetailBySubjectId.setCourseTotal(courseTotal);
         // 复制属性->SubjectAndSubjectInfoVO
         BeanUtils.copyProperties(subjectDetailBySubjectId, subjectAndSubjectInfoVO);
-        // 查询当前用户是否参加当前课程
+        // 查询当前用户是否参加当前学科
         subjectAndSubjectInfoVO.setJoin(false);
         List<FavoritesVO> favoritesVOList = favoritesMapper.getFavoritesByUsername((String) request.getAttribute("username"));
         for (FavoritesVO favoritesVO : favoritesVOList) {
@@ -109,12 +100,12 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
             SubjectAndSubjectInfoVO.CourseVO courseVO = new SubjectAndSubjectInfoVO.CourseVO();
             BeanUtils.copyProperties(course, courseVO);
             // 查询当前用户是否参加
-            QueryWrapper<Record> recordQueryWrapper = new QueryWrapper<>();
-            recordQueryWrapper
-                    .eq("course_id", course.getCourseId())
-                    .eq("user_name", ContextUtils.getUsername());
-            Integer count = recordMapper.selectCount(recordQueryWrapper);
-            courseVO.setJoin(count != 0);
+//            QueryWrapper<Record> recordQueryWrapper = new QueryWrapper<>();
+//            recordQueryWrapper
+//                    .eq("course_id", course.getCourseId())
+//                    .eq("user_name", ContextUtils.getUsername());
+//            Integer count = recordMapper.selectCount(recordQueryWrapper);
+//            courseVO.setJoin(count != 0);
             courseList1.add(courseVO);
         }
         subjectAndSubjectInfoVO.setCourseList(courseList1);
@@ -139,7 +130,3 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course>
         return courseList;
     }
 }
-
-
-
-

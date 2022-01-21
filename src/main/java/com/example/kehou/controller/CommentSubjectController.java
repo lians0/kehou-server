@@ -2,10 +2,10 @@ package com.example.kehou.controller;
 
 import com.example.kehou.common.utils.BeanUtils;
 import com.example.kehou.domain.Result;
-import com.example.kehou.domain.entity.CommentCourse;
+import com.example.kehou.domain.entity.CommentSubject;
 import com.example.kehou.domain.entity.User;
-import com.example.kehou.domain.model.CommentCourseBody;
-import com.example.kehou.service.CommentCourseService;
+import com.example.kehou.domain.model.CommentSubjectBody;
+import com.example.kehou.service.CommentSubjectService;
 import com.example.kehou.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -17,20 +17,20 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
- * 课程评价(CommentCourse)表控制层
+ * 课程评价(CommentSubject)表控制层
  *
  * @author makejava
  * @since 2022-01-12 10:30:26
  */
-@Api(tags = "课程评价接口")
+@Api(tags = "学科评价接口")
 @RestController
-@RequestMapping("commentCourse")
-public class CommentCourseController {
+@RequestMapping("commentSubject")
+public class CommentSubjectController {
     /**
      * 服务对象
      */
     @Resource
-    private CommentCourseService commentCourseService;
+    private CommentSubjectService commentSubjectService;
 
     @Resource
     private HttpServletRequest autowiredRequest;
@@ -40,32 +40,32 @@ public class CommentCourseController {
 
 
     /**
-     * 根据课程id获取课程评价 时间升序
+     * 根据学科id获取课程评价 时间升序
      *
      * @param subjectId
      * @return com.example.kehou.domain.Result
      * @author shuanglian
      * @date 2022/1/12
      */
-    @ApiOperation("根据课程id获取课程评价")
-    @PostMapping("getCommentCourseBySubjectId")
-    public Result getCommentCourseBySubjectId(String subjectId) {
-        List<CommentCourse> commentCourseList = commentCourseService.getCommentCourseBySubjectId(subjectId);
-        return Result.success(commentCourseList);
+    @ApiOperation("根据学科id获取课程评价")
+    @PostMapping("getCommentSubjectBySubjectId")
+    public Result getCommentSubjectBySubjectId(String subjectId) {
+        List<CommentSubject> commentSubjectList = commentSubjectService.getCommentSubjectBySubjectId(subjectId);
+        return Result.success(commentSubjectList);
     }
 
-    @ApiOperation("添加课程评价test")
-    @PostMapping("addCommentCourse")
-    public Result addCommentCourse(@RequestBody CommentCourseBody commentCourseBody) {
+    @ApiOperation("添加学科评价")
+    @PostMapping("addCommentSubject")
+    public Result addCommentSubject(@RequestBody CommentSubjectBody commentSubjectBody) {
 
         String username = (String) autowiredRequest.getAttribute("username");
         System.out.println(username);
         User user = userService.getUserByUsername(username);
         System.out.println(user);
-        CommentCourse commentCourse = new CommentCourse();
-        BeanUtils.copyProperties(commentCourseBody, commentCourse);
-        BeanUtils.copyProperties(user, commentCourse);
-        int insert = commentCourseService.addCommentCourse(commentCourse);
+        CommentSubject commentSubject = new CommentSubject();
+        BeanUtils.copyProperties(commentSubjectBody, commentSubject);
+        BeanUtils.copyProperties(user, commentSubject);
+        int insert = commentSubjectService.addCommentSubject(commentSubject);
 
         return insert != 0 ? Result.success("添加评论成功") : Result.error("添加评论失败");
     }

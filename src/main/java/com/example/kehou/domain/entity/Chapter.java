@@ -8,21 +8,21 @@ import lombok.Data;
 
 /**
  * 
- * @TableName course
+ * @TableName chapter
  */
-@TableName(value ="course")
+@TableName(value ="chapter")
 @Data
-public class Course implements Serializable {
+public class Chapter implements Serializable {
     /**
      * 课程id
      */
     @TableId(type = IdType.AUTO)
-    private Integer courseId;
+    private Integer chapterId;
 
     /**
      * 课程名称
      */
-    private String courseName;
+    private String chapterName;
 
     /**
      * 所属学科Id

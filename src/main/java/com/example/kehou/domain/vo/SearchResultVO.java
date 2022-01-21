@@ -1,6 +1,6 @@
 package com.example.kehou.domain.vo;
 
-import com.example.kehou.domain.dto.CourseSearchDTO;
+import com.example.kehou.domain.dto.ChapterSearchDTO;
 import com.example.kehou.domain.dto.SubjectSearchDTO;
 import lombok.Data;
 
@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Data
 public class SearchResultVO {
-    List<CourseSearchDTO> courseList;
+    List<ChapterSearchDTO> chapterList;
     List<SubjectSearchDTO> subjectList;
 
 }

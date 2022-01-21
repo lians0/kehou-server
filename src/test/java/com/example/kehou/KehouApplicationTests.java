@@ -2,7 +2,7 @@ package com.example.kehou;
 
 import com.alibaba.fastjson.JSON;
 import com.example.kehou.common.utils.BeanUtils;
-import com.example.kehou.domain.entity.Course;
+import com.example.kehou.domain.entity.Chapter;
 import com.example.kehou.domain.vo.SearchResultVO;
 import lombok.Data;
 import org.junit.jupiter.api.Test;
@@ -15,8 +15,8 @@ class KehouApplicationTests {
 
     @Test
     void contextLoads() {
-        Course course = JSON.parseObject("{}", Course.class);
-        System.out.println(BeanUtils.isNull(course));
+        Chapter chapter = JSON.parseObject("{}", Chapter.class);
+        System.out.println(BeanUtils.isNull(chapter));
     }
 
 

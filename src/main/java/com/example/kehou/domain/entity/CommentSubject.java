@@ -8,14 +8,14 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- * 课程评价
- * @TableName comment_course
+ * 学科评价
+ * @TableName comment_chapter
  */
 @TableName(value ="comment_subject")
 @Data
 public class CommentSubject implements Serializable {
     /**
-     * 课程评价id
+     * 学科评价id
      */
     @TableId(type = IdType.AUTO)
     private Integer commentId;
@@ -41,7 +41,7 @@ public class CommentSubject implements Serializable {
     private String testType;
 
     /**
-     * 课程评价
+     * 学科评价
      */
     private String commentText;
 

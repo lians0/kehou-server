@@ -1,6 +1,6 @@
 package com.example.kehou.service;
 
-import com.example.kehou.domain.entity.Course;
+import com.example.kehou.domain.entity.Chapter;
 import com.example.kehou.domain.entity.Subject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.kehou.domain.vo.SubjectDetailVO;

@@ -12,11 +12,11 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author ShuangLian
  * @date 2022/1/13 17:09
  */
-class CourseControllerTest {
+class ChapterControllerTest {
 
 
     @Test
-    void getCourseListByCourseId() {
+    void getChapterListByChapterId() {
         ArrayList<Object> objects = new ArrayList<>();
         Result result = new Result();
         System.out.println(JSON.toJSONString(result));

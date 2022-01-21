@@ -1,12 +1,12 @@
 package com.example.kehou.service.system;
 
 import com.example.kehou.common.utils.BeanUtils;
-import com.example.kehou.domain.dto.CourseSearchDTO;
+import com.example.kehou.domain.dto.ChapterSearchDTO;
 import com.example.kehou.domain.dto.SubjectSearchDTO;
-import com.example.kehou.domain.entity.Course;
+import com.example.kehou.domain.entity.Chapter;
 import com.example.kehou.domain.entity.Subject;
 import com.example.kehou.domain.vo.SearchResultVO;
-import com.example.kehou.service.CourseService;
+import com.example.kehou.service.ChapterService;
 import com.example.kehou.service.SubjectService;
 import com.example.kehou.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -27,23 +27,23 @@ import java.util.List;
 public class SearchService {
 
     @Resource
-    private CourseService courseService;
+    private ChapterService chapterService;
     @Resource
     private SubjectService subjectService;
     @Resource
     private UserService userService;
 
     public SearchResultVO searchAll(String searchType, String searchValue) {
-        List<Course> courseList = courseService.searchCourse(searchValue);
-        ArrayList<CourseSearchDTO> courseSearchDTOS = new ArrayList<>();
-        if (courseList.size() != 0) {
+        List<Chapter> chapterList = chapterService.searchChapter(searchValue);
+        ArrayList<ChapterSearchDTO> chapterSearchDTOS = new ArrayList<>();
+        if (chapterList.size() != 0) {
             //遍历去查课程对应学科名
-            for (Course course : courseList) {
-                CourseSearchDTO courseSearchDTO = new CourseSearchDTO();
-                BeanUtils.copyProperties(course, courseSearchDTO);
-                String subjectName = subjectService.getSubjectBySubjectId(course.getSubjectId().toString()).getSubjectName();
-                courseSearchDTO.setSubjectName(subjectName);
-                courseSearchDTOS.add(courseSearchDTO);
+            for (Chapter chapter : chapterList) {
+                ChapterSearchDTO chapterSearchDTO = new ChapterSearchDTO();
+                BeanUtils.copyProperties(chapter, chapterSearchDTO);
+                String subjectName = subjectService.getSubjectBySubjectId(chapter.getSubjectId().toString()).getSubjectName();
+                chapterSearchDTO.setSubjectName(subjectName);
+                chapterSearchDTOS.add(chapterSearchDTO);
             }
         }
 
@@ -60,7 +60,7 @@ public class SearchService {
             }
         }
         SearchResultVO searchResultVO = new SearchResultVO();
-        searchResultVO.setCourseList(courseSearchDTOS);
+        searchResultVO.setChapterList(chapterSearchDTOS);
         searchResultVO.setSubjectList(subjectSearchDTOS);
         return searchResultVO;
     }

@@ -21,9 +21,9 @@ public class CommentSubjectServiceImpl extends ServiceImpl<CommentSubjectMapper,
         QueryWrapper<CommentSubject> wrapper = new QueryWrapper<>();
         wrapper.eq("subject_id",subjectId);
         wrapper.orderBy(true,true,"create_time");
-        List<CommentSubject> courseList = baseMapper.selectList(wrapper);
+        List<CommentSubject> chapterList = baseMapper.selectList(wrapper);
 
-        return courseList;
+        return chapterList;
     }
 
     @Override

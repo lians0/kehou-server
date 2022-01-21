@@ -1,33 +1,33 @@
 package com.example.kehou.mapper;
 
-import com.example.kehou.domain.entity.Course;
+import com.example.kehou.domain.entity.Chapter;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 /**
- * @Entity generator.domain.Course
+ * @Entity generator.domain.Chapter
  */
 @Mapper
-public interface CourseMapper extends BaseMapper<Course> {
+public interface ChapterMapper extends BaseMapper<Chapter> {
 
     /**
      * 根据课程id查课程
      */
-    Course getCourseByCourseId(String courseId);
+    Chapter getChapterByChapterId(String chapterId);
 
     /**
      * 根据学科id查课程列表
      * 按时间降序
      */
-    List<Course> getCourseListByCourseId(String subjectId);
+    List<Chapter> getChapterListByChapterId(String subjectId);
 
     /**
      * 根据学科id查课程列表
      * 可分页，指定时间排序规则
      */
-    List<Course> getCourseListByCourseIdPaging(String subjectId, Integer start, Integer pageSize, Integer orderBy);
+    List<Chapter> getChapterListByChapterIdPaging(String subjectId, Integer start, Integer pageSize, Integer orderBy);
 
 
     /**

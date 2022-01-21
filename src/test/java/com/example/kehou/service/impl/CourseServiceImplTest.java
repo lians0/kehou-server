@@ -8,9 +8,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author ShuangLian
  * @date 2021/12/21 11:34
  */
-class CourseServiceImplTest {
+class ChapterServiceImplTest {
 
     @Test
-    void getCourseListAndSubjectInfoByCourseId() {
+    void getChapterListAndSubjectInfoByChapterId() {
     }
 }

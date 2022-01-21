@@ -10,7 +10,7 @@ import java.util.List;
  * @date 2021/12/20 19:28
  */
 @Data
-public class SubjectAndSubjectInfoVO {
+public class SubjectInfoVO {
 
     private String subjectId;
     private String teacher;
@@ -25,7 +25,7 @@ public class SubjectAndSubjectInfoVO {
     /**
      * 该科目的总课程数
      */
-    private int courseTotal;
+    private int chapterTotal;
     /**
      * 当前用具是否已参加课程
      */
@@ -33,15 +33,15 @@ public class SubjectAndSubjectInfoVO {
     /**
      * 当前课程的所有课程
      */
-    private List<CourseVO> courseList;
+    private List<ChapterVO> chapterList;
 
     @Data
-    public static class CourseVO {
-        private Integer courseId;
+    public static class ChapterVO {
+        private Integer chapterId;
         /**
          * 课程名称
          */
-        private String courseName;
+        private String chapterName;
         /**
          * 所属学科
          */

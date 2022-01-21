@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.kehou.domain.entity.Subject;
 import com.example.kehou.domain.vo.SubjectDetailVO;
-import com.example.kehou.mapper.CourseMapper;
+import com.example.kehou.mapper.ChapterMapper;
 import com.example.kehou.mapper.FavoritesMapper;
 import com.example.kehou.service.SubjectService;
 import com.example.kehou.mapper.SubjectMapper;
@@ -23,7 +23,7 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject>
     private SubjectMapper subjectMapper;
 
     @Resource
-    private CourseMapper courseMapper;
+    private ChapterMapper chapterMapper;
 
     @Resource
     private FavoritesMapper favoritesMapper;
@@ -37,7 +37,7 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject>
     public SubjectDetailVO getSubjectDetailBySubjectId(String subjectId) {
 
         SubjectDetailVO subjectDetailVO = subjectMapper.getSubjectDetailBySubjectId(subjectId);
-        subjectDetailVO.setCourseTotal(courseMapper.countBySubjectId(subjectId));
+        subjectDetailVO.setChapterTotal(chapterMapper.countBySubjectId(subjectId));
         subjectDetailVO.setJoinTotal(favoritesMapper.countBySubjectId(subjectId));
         return subjectDetailVO;
     }

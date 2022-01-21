@@ -1,6 +1,6 @@
 package com.example.kehou.mapper;
 
-import com.example.kehou.domain.entity.Course;
+import com.example.kehou.domain.entity.Chapter;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,22 +19,22 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @SpringBootTest
 //@RunWith(SpringRunner.class)
-class CourseMapperTest {
+class ChapterMapperTest {
     @Resource
-    private CourseMapper courseMapper;
+    private ChapterMapper chapterMapper;
 
     @Test
-    void getCourseByCourseId() {
+    void getChapterByChapterId() {
     }
 
     @Test
-    void getCourseListByCourseId() {
-        List<Course> courseListByCourseId = courseMapper.getCourseListByCourseId("100");
-        System.out.println(courseListByCourseId.size()==0);
+    void getChapterListByChapterId() {
+        List<Chapter> chapterListByChapterId = chapterMapper.getChapterListByChapterId("100");
+        System.out.println(chapterListByChapterId.size()==0);
     }
 
     @Test
     void countBySubjectId() {
-        System.out.println(courseMapper.countBySubjectId("1"));
+        System.out.println(chapterMapper.countBySubjectId("1"));
     }
 }

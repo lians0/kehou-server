@@ -7,16 +7,16 @@ import lombok.Data;
  * @date 2022/1/17 16:47
  */
 @Data
-public class CourseSearchDTO {
+public class ChapterSearchDTO {
     /**
-     * 课程Id
+     * 学科Id
      */
-    private Integer courseId;
+    private Integer chapterId;
 
     /**
-     * 课程名称
+     * 学科名称
      */
-    private String courseName;
+    private String chapterName;
 
     /**
      * 所属学科名称

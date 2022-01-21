@@ -25,5 +25,5 @@ public class SubjectDetailVO {
     /**
      * 该科目的总课程数
      */
-    private int courseTotal;
+    private int chapterTotal;
 }

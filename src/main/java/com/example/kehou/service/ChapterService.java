@@ -1,23 +1,23 @@
 package com.example.kehou.service;
 
-import com.example.kehou.domain.entity.Course;
+import com.example.kehou.domain.entity.Chapter;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.example.kehou.domain.vo.SubjectAndSubjectInfoVO;
+import com.example.kehou.domain.vo.SubjectInfoVO;
 
 import java.util.List;
 
 
-public interface CourseService extends IService<Course> {
+public interface ChapterService extends IService<Chapter> {
 
     /**
      * 根据课程id查课程
      *
-     * @param courseId
-     * @return com.example.kehou.domain.entity.Course
+     * @param chapterId
+     * @return com.example.kehou.domain.entity.Chapter
      * @author ShuangLian
      * @date 2022/1/19
      */
-    Course getCourseByCourseId(String courseId);
+    Chapter getChapterByChapterId(String chapterId);
 
     /**
      * 根据学科id查课程列表
@@ -27,7 +27,7 @@ public interface CourseService extends IService<Course> {
      * @author ShuangLian
      * @date 2022/1/19
      */
-    List<Course> getCourseListBySubjectId(String subjectId);
+    List<Chapter> getChapterListBySubjectId(String subjectId);
 
 
     /**
@@ -36,11 +36,11 @@ public interface CourseService extends IService<Course> {
      * @param pageSize
      * @param pageNum
      * @param orderBy
-     * @return java.util.List<com.example.kehou.domain.entity.Course>
+     * @return java.util.List<com.example.kehou.domain.entity.Chapter>
      * @author ShuangLian
      * @date 2022/1/19
      */
-    List<Course> getCourseListBySubjectId(String subjectId, Integer pageSize, Integer pageNum, Integer orderBy);
+    List<Chapter> getChapterListBySubjectId(String subjectId, Integer pageSize, Integer pageNum, Integer orderBy);
 
     /**
      * 获取课程详情，上课记录，用户<Strong>课程与学科</Strong>是否参与
@@ -48,15 +48,15 @@ public interface CourseService extends IService<Course> {
      * @param subjectId 学科Id
      * @author ShuangLian
      */
-    SubjectAndSubjectInfoVO getCourseListAndSubjectInfoByCourseId(String subjectId);
+    SubjectInfoVO getChapterListAndSubjectInfoByChapterId(String subjectId);
 
     /**
      * 搜索课程 按时间倒叙 只要前三条
      *
      * @param searchValue like语句
-     * @return java.util.List<com.example.kehou.domain.entity.Course>
+     * @return java.util.List<com.example.kehou.domain.entity.Chapter>
      * @author ShuangLian
      * @date 2022/1/17
      */
-    List<Course> searchCourse(String searchValue);
+    List<Chapter> searchChapter(String searchValue);
 }

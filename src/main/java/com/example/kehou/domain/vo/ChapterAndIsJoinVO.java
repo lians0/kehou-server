@@ -9,13 +9,13 @@ import java.util.Date;
  * @date 2022/1/13 16:55
  */
 @Data
-public class CourseAndIsJoinVO {
-    private Integer courseId;
+public class ChapterAndIsJoinVO {
+    private Integer chapterId;
 
     /**
      * 课程名称
      */
-    private String courseName;
+    private String chapterName;
 
     /**
      * 所属学科

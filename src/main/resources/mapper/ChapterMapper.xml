@@ -2,35 +2,35 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.kehou.mapper.CourseMapper">
+<mapper namespace="com.example.kehou.mapper.ChapterMapper">
 
-    <resultMap id="BaseResultMap" type="com.example.kehou.domain.entity.Course">
-        <id property="courseId" column="course_id" jdbcType="INTEGER"/>
-        <result property="courseName" column="course_name" jdbcType="VARCHAR"/>
+    <resultMap id="BaseResultMap" type="com.example.kehou.domain.entity.Chapter">
+        <id property="chapterId" column="chapter_id" jdbcType="INTEGER"/>
+        <result property="chapterName" column="chapter_name" jdbcType="VARCHAR"/>
         <result property="subjectId" column="subject_id" jdbcType="INTEGER"/>
         <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
         <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Select">
-        select course_id,
-               course_name,
+        select chapter_id,
+               chapter_name,
                subject_id,
                create_time,
                update_time
-        from course
+        from chapter
     </sql>
-    <select id="getCourseByCourseId" resultType="com.example.kehou.domain.entity.Course">
+    <select id="getChapterByChapterId" resultType="com.example.kehou.domain.entity.Chapter">
         <include refid="Base_Select"/>
-        where course_id = #{courseId}
+        where chapter_id = #{chapterId}
         limit 1
     </select>
-    <select id="getCourseListByCourseId" resultType="com.example.kehou.domain.entity.Course">
+    <select id="getChapterListByChapterId" resultType="com.example.kehou.domain.entity.Chapter">
         <include refid="Base_Select"/>
         where subject_id = #{subjectId}
         order by create_time desc
     </select>
-    <select id="getCourseListByCourseIdPaging" resultType="com.example.kehou.domain.entity.Course">
+    <select id="getChapterListByChapterIdPaging" resultType="com.example.kehou.domain.entity.Chapter">
         <include refid="Base_Select"/>
         where subject_id = #{subjectId}
         order by create_time desc
@@ -40,7 +40,7 @@
     </select>
     <select id="countBySubjectId" resultType="java.lang.Integer">
         select count(*)
-        from course
+        from chapter
         where subject_id = #{subjectId}
     </select>
 </mapper>

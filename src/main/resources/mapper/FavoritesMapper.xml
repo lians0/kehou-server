@@ -35,7 +35,7 @@
         AND a.subject_id = c.subject_id
         AND b.user_name = #{username}
         ORDER BY
-        c.create_time
+        a.create_time
     </select>
     <select id="countBySubjectId" resultType="java.lang.Integer">
         select count(*)

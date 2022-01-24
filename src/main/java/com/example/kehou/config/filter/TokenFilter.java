@@ -55,7 +55,7 @@ public class TokenFilter implements Filter {
             if(StringUtils.isEmpty(token)){
                 throw new TokenException(httpRequest.getRequestURI()+" 你未登录,请登录");
             }
-            log.info(token);
+            log.info("用户token:[{}]", token);
             // token有效性验证
             String account = tokenService.validToken(token);
             log.info("用户:[{}],请求地址：{}",account,((HttpServletRequest) request).getServletPath());

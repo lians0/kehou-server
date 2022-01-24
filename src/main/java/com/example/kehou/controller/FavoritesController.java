@@ -37,6 +37,7 @@ public class FavoritesController {
 
     /**
      * 查询该用户所有收藏的科目
+     * 按时间增序排列
      *
      * @author shuanglian
      * @date 2021/12/15

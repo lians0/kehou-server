@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/record")
 public class RecordController {
-    /**
-     *
+    /*
+     查询该课程是
      */
 //    public Result getRecordBy
 }

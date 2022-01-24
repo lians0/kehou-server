@@ -3,6 +3,7 @@ package com.example.kehou.controller;
 
 import com.example.kehou.domain.Result;
 import com.example.kehou.domain.model.LoginBody;
+import com.example.kehou.domain.vo.UserInfoVO;
 import com.example.kehou.service.UserService;
 import com.example.kehou.service.system.LoginService;
 import io.swagger.annotations.Api;
@@ -31,20 +32,18 @@ public class UserController {
 
     @ApiOperation("用户登录")
     @PostMapping("/login")
-    public Result login(@RequestBody @Valid LoginBody loginBody) {
-
-        System.out.println(loginBody);
-
-        String login = loginService.login(loginBody);
-        return Result.success("登录成功",login);
+    public Result login(String username, String password) {
+        UserInfoVO login = loginService.login(username, password);
+        return Result.success("登录成功", login);
     }
 
 
     @ApiOperation("用户注册")
     @PostMapping("/register")
-    public Result register(@RequestBody LoginBody loginBody){
+    public Result register(@RequestBody LoginBody loginBody) {
         userService.register(loginBody);
-        String token = loginService.login(loginBody);
-        return Result.success("注册成功",token);
+//        UserInfoVO login = loginService.login(loginBody);
+//        return Result.success("注册成功",login);
+        return null;
     }
 }

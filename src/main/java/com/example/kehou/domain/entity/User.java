@@ -9,7 +9,7 @@ import java.util.Date;
 import lombok.Data;
 
 /**
- * 
+ * 用户表
  * @TableName user
  */
 @TableName(value ="user")
@@ -22,14 +22,19 @@ public class User implements Serializable {
     private Integer userId;
 
     /**
-     * 登录账号
+     * 昵称
      */
     private String loginName;
 
     /**
-     * 用户昵称
+     * 用户名
      */
     private String userName;
+
+    /**
+     * 用户头像
+     */
+    private String icon;
 
     /**
      * 用户邮箱
@@ -52,9 +57,9 @@ public class User implements Serializable {
     private String salt;
 
     /**
-     * 类型:Y默认用户,N非默认用户
+     * 类型:S学生,T老师,A管理员
      */
-    private String 	userType;
+    private String userType;
 
     /**
      * 帐号状态:0正常,1禁用

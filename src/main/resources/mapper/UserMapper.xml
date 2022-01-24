@@ -5,27 +5,38 @@
 <mapper namespace="com.example.kehou.mapper.UserMapper">
 
     <resultMap id="BaseResultMap" type="com.example.kehou.domain.entity.User">
-            <id property="userId" column="user_id" jdbcType="INTEGER"/>
-            <result property="loginName" column="login_name" jdbcType="VARCHAR"/>
-            <result property="userName" column="user_name" jdbcType="VARCHAR"/>
-            <result property="email" column="email" jdbcType="VARCHAR"/>
-            <result property="phonenumber" column="phonenumber" jdbcType="VARCHAR"/>
-            <result property="password" column="password" jdbcType="VARCHAR"/>
-            <result property="salt" column="salt" jdbcType="VARCHAR"/>
-            <result property="userType" column="user_type" jdbcType="CHAR"/>
-            <result property="status" column="status" jdbcType="INTEGER"/>
-            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
-            <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <id property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="loginName" column="login_name" jdbcType="VARCHAR"/>
+        <result property="userName" column="user_name" jdbcType="VARCHAR"/>
+        <result property="icon" column="icon" jdbcType="VARCHAR"/>
+        <result property="email" column="email" jdbcType="VARCHAR"/>
+        <result property="phonenumber" column="phonenumber" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="salt" column="salt" jdbcType="VARCHAR"/>
+        <result property="userType" column="user_type" jdbcType="CHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <sql id="Base_Select">
-        select user_id,login_name,user_name,
-        email,phonenumber,password,
-        salt,user_type,status,
-        create_time,update_time from user
+        select user_id,
+               login_name,
+               user_name,
+               icon,
+               email,
+               phonenumber,
+               password,
+               salt,
+               user_type,
+               status,
+               create_time,
+               update_time
+        from user
     </sql>
     <insert id="insertUser" parameterType="User">
-        insert into user (user_name,password,create_time) values (#{userName},#{password},#{createTime})
+        insert into user (user_name, password, create_time)
+        values (#{userName}, #{password}, #{createTime})
     </insert>
     <select id="getUserByUsername" parameterType="String" resultType="com.example.kehou.domain.entity.User">
         <include refid="Base_Select"/>

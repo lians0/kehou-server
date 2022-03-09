@@ -17,11 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 @Api(tags = "异常处理")
 public class ExceptionController {
 
-    @Resource
-    private HttpServletRequest request;
+//    @Resource
+//    private HttpServletRequest request;
 
     @RequestMapping("/err")
-    public void rethrow() {
-        throw (RuntimeException) request.getAttribute("exception");
+    public void rethrow(HttpServletRequest request) throws Exception {
+        throw (Exception) request.getAttribute("exception");
     }
 }

@@ -3,10 +3,13 @@ package com.example.kehou.config;
 import com.example.kehou.config.filter.ExceptionFilter;
 import com.example.kehou.config.filter.PrintFilter;
 import com.example.kehou.config.filter.TokenFilter;
+import com.example.kehou.config.interceptor.TokenInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 /**
  * 过滤器配置
@@ -47,7 +50,7 @@ public class WebConfig {
     /**
      * token 检验过滤器
      */
-    @Bean
+//    @Bean
     public FilterRegistrationBean<TokenFilter> TokenFilterRegistration() {
         FilterRegistrationBean<TokenFilter> registration =
                 new FilterRegistrationBean<>(new TokenFilter());
